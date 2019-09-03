@@ -83,7 +83,7 @@
 
 
             .anim-typewriter {
-                animation: typewriter 2s steps(200) 1s 1 normal both,
+                animation: typewriter 1.5s steps(100) 1s 1 normal both,
                 blinkTextCursor 500ms steps(100) infinite normal;
             }
 
@@ -108,6 +108,7 @@
             @media (max-width: 500px) {
                 .college {
                     font-size: 22px!important;
+                    top: -150px!important;
                 }
                 .line {
                     font-size: 26px;
@@ -132,7 +133,14 @@
                 .aboutUs{
                     width: 85%!important;
                 }
-
+                @keyframes typewriter {
+                    from {
+                        width: 0;
+                    }
+                    to {
+                        width: 260px;
+                    }
+                }
             }
 
             .college {
