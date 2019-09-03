@@ -27,8 +27,8 @@ app.use(cookieParser());
 
 
 /* Requiring Routes*/  
-  var  campgroundRoutes = require("./routes/campground"),
-    indexRoutes = require("./routes/index");
+  var  internshipRoutes = require("./routes/intern-job"),
+        indexRoutes = require("./routes/index");
 
 
 
@@ -41,7 +41,7 @@ app.use(methodOverride("_method"));
 app.use(flash());
 
 /*Models*/
-var Campground = require("./models/campground");
+var Campground = require("./models/intern-job");
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -83,7 +83,7 @@ mongoose.connect('mongodb://ecell:ecell007@ds215988.mlab.com:15988/student_inter
 
 /* Routes */
 app.use("/",indexRoutes);
-app.use("/campgrounds",campgroundRoutes);       // router.get("/"......
+app.use("/campgrounds",internshipRoutes);       // router.get("/"......
 
 const PORT = process.env.PORT || 8000;
 

@@ -1,6 +1,7 @@
 const GoogleStrategy = require('passport-google-oauth20');
 const passport =require('passport');
-const User = require('./models/student')
+const User = require('./models/student');
+
 module.exports = (passport) => {
     passport.serializeUser((user, done) => {
         done(null, user.id);
@@ -28,7 +29,7 @@ module.exports = (passport) => {
                         googleid : profile.id,
                         emailid : profile._json.email,
                         branch : profile.name.familyName,
-                        phone : '9876543210',
+                        phone : null,
                         profile : profile._json.picture,
                         job_applied : []
                     }).save().then((newUser) => {

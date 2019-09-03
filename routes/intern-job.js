@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const User = require('../models/student')
-var Campground = require("../models/campground");
+var Internship = require("../models/intern-job");
 var Application = require("../models/applied-interns");
 // var middleware = require("../middleware/index");  // Inddex.js is the sort of default file
 var middleware = require("../middleware");
@@ -11,11 +11,11 @@ var middleware = require("../middleware");
 // Show All Campgrounds Route   -- Index
 router.get("/", middleware.isLoggedIn, function(req, res){
     // console.log(req.user);  // Contains the username and id of the user as an object. Use this in the header template.
-    Campground.find({},function(err,campgrounds){
+    Internship.find({},function(err, Internships){
        if(err){console.log(err);}
        else{
            // res.render("campgrounds/index", {campgrounds : campgrounds, currentUser : req.user});
-           res.render("campgrounds/index", {campgrounds : campgrounds, user : req.user});
+           res.render("internships/index", {campgrounds : Internships, user : req.user});
        }
     });
 }); 
@@ -23,7 +23,7 @@ router.get("/", middleware.isLoggedIn, function(req, res){
 // New Route
 
 router.get("/new",middleware.checkCampgroundOwnership, function(req, res) {
-   res.render("campgrounds/new", {user : req.user}) ;
+   res.render("internships/new", {user : req.user}) ;
 });
 
 // Create Route
@@ -58,11 +58,11 @@ router.post("/",middleware.checkCampgroundOwnership, function(req, res) {
        }
    }
    result[j] = str;
-   var newCampground = { company_name : name, company_profile : profile, stipend : stipend, location : location, duration : duration, perks : perks, requirement : require, company_details : company_details, job_posted : job_posted, role : result, author : author};
-   Campground.create(newCampground,function(err, newlyCreatedCampground){
+   var newInternship = { company_name : name, company_profile : profile, stipend : stipend, location : location, duration : duration, perks : perks, requirement : require, company_details : company_details, job_posted : job_posted, role : result, author : author};
+   Internship.create(newInternship,function(err, newlyCreatedIntership){
       if(err){console.log(err);}
       else{
-        res.redirect("/campgrounds");       
+        res.redirect("/internships");       
       }
    });
     /*campgrounds.push(newCampground); */   
@@ -81,11 +81,11 @@ router.get("/:id", middleware.isLoggedIn, function(req, res) {
             job_applied_answers = element.answer;
         }
     });
-    Campground.findById(req.params.id).populate("comments").exec(function(err,foundCampground){
+    Internship.findById(req.params.id).exec(function(err,foundInternship){
     /* Campground.findById(req.params.id, function(err, foundCampground){ */
        if(err){ console.log(err); }
        else{
-           res.render("campgrounds/show", {campground : foundCampground, user: req.user, applied : applied});
+           res.render("internships/show", {campground : foundInternship, user: req.user, applied : applied});
        }
     });
 });
@@ -100,20 +100,20 @@ router.get("/:id/assessment-test", middleware.isLoggedIn, function(req, res){
         }
     });
 
-    Campground.findById(req.params.id, function(err, foundCampground) {
+    Internship.findById(req.params.id, function(err, foundInternship) {
         if(err){console.log(err);}
         else{
-         res.render("campgrounds/assessment", {campground : foundCampground, user: req.user, applied : applied, answer : job_applied_answers});
+         res.render("internships/assessment", {campground : foundInternship, user: req.user, applied : applied, answer : job_applied_answers});
         }
     })
 })
 
 // Edit Route
 router.get("/:id/edit", middleware.checkCampgroundOwnership, function(req, res) {
-   Campground.findById(req.params.id, function(err, foundCampground) {
+    Internship.findById(req.params.id, function(err, foundInternship) {
        if(err){console.log(err);}
        else{
-        res.render("campgrounds/edit", {campground : foundCampground, user: req.user});
+        res.render("internships/edit", {campground : foundInternship, user: req.user});
        }
    })
     
@@ -130,7 +130,7 @@ router.put("/:id/job-apllication", middleware.isLoggedIn, function(req, res) {
     }
 
     User.findById(req.user._id).then((foundStudent) => {
-        Campground.findById(req.params.id).then((foundJob) => {
+        Internship.findById(req.params.id).then((foundJob) => {
             Application.create({company_id : req.params.id, student_id : req.user._id, answer : answer, company_name : foundJob.company_name, company_profile : foundJob.company_profile, student_name : foundStudent.name, student_email : foundStudent.emailid, student_phone : foundStudent.phone});
         })
     });
@@ -140,21 +140,21 @@ router.put("/:id/job-apllication", middleware.isLoggedIn, function(req, res) {
     update.push(f);
      User.findOneAndUpdate({googleid : req.user.googleid}, {job_applied_company : update} , function(err, updatedUser) {
         if(err){
-            res.redirect('/campgrounds');
+            res.redirect('/internships');
         }
         else{
-            res.redirect("/campgrounds/" + req.params.id);
+            res.redirect("/internships/" + req.params.id);
         }
     })
 })
 
 router.put("/:id",middleware.checkCampgroundOwnership, function(req, res){
-   Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground){
+    Internship.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedInternship){
         if(err){ 
-            res.redirect('/campgrounds');
+            res.redirect('/internships');
         }
         else{
-            res.redirect("/campgrounds/" + req.params.id);
+            res.redirect("/internships/" + req.params.id);
         }
    }); 
 });
@@ -163,11 +163,11 @@ router.put("/:id",middleware.checkCampgroundOwnership, function(req, res){
 // Destroy Campground Route
 
 router.delete("/:id", middleware.checkCampgroundOwnership,function(req, res){
-    Campground.findByIdAndRemove(req.params.id, function(err){
+    Internship.findByIdAndRemove(req.params.id, function(err){
         if(err){
-            res.redirect("/campgrounds");
+            res.redirect("/internships");
         } else{
-            res.redirect("/campgrounds");
+            res.redirect("/internships");
         }
     })
 });

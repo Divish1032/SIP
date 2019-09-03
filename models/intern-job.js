@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 
 /* Create Schema, then a model which gives you all the methods */
-var campgroundSchema = new mongoose.Schema({
+var internshipSchema = new mongoose.Schema({
     company_name : String,
     company_profile : String,
     stipend : String,
@@ -17,8 +17,8 @@ var campgroundSchema = new mongoose.Schema({
     
 });
 
-var Campground = mongoose.model("Campground",campgroundSchema);
+var Internship = mongoose.model("Internship",internshipSchema);
 
-module.exports = Campground;
+module.exports = Internship;
 
 /* module.exports = mongoose.model("Campground",campgroundSchema); */

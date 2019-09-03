@@ -1,5 +1,5 @@
 // All the middleware
-var Campground = require("../models/campground");
+var Internship = require("../models/intern-job");
 var flash = require("connect-flash");
 var middlewareObj = {};
 

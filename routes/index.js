@@ -4,7 +4,7 @@ var passport = require("passport");
 var flash = require("connect-flash");
 var middleware = require("../middleware");
 const User = require('../models/student');
-var Campground = require("../models/campground");
+var Internship = require("../models/intern-job");
 var Application = require("../models/applied-interns");
 
 router.get('/', (req, res) => {
@@ -21,10 +21,14 @@ router.get('/logout', (req, res) => {
     res.redirect("/");
 });
 
+router.get('/about-us', (req, res) => {
+   res.render("know-more", {user : req.user});
+});
+
 router.get('/profile', middleware.isLoggedIn, (req,res) => {
     var job_selected = [];
     
-        Campground.find({}, function(err, alljobs) {
+    Internship.find({}, function(err, alljobs) {
             if(err){console.log(err);}
             else{
                 alljobs.forEach(job => {
@@ -40,9 +44,7 @@ router.get('/profile', middleware.isLoggedIn, (req,res) => {
                 console.log("++" + elem);
             })
             res.render("profile", {user : req.user, job_selected : job_selected});  
-        })
-   
-    
+        });
 } )
 
 router.get('/auth/google/callback',
@@ -66,19 +68,19 @@ router.put("/profile/:id", middleware.isLoggedIn, function(req, res){
  });
 
 
- router.get("/list-jobs", middleware.checkCampgroundOwnership, function(req, res){
-     Application.find({}, function(err, jobs){
-         if(err){
-             console.log(err);
-             res.redirect('/profile');
-         }
-         else{
-             var temp = groupBy1("company_id", jobs);
-             console.log(temp);
-             res.render("all-jobs", {user : req.user, jobs : temp});
-         }
-     })
- })
+router.get("/list-jobs", middleware.checkCampgroundOwnership, function(req, res){
+    Application.find({}, function(err, jobs){
+        if(err){
+            console.log(err);
+            res.redirect('/profile');
+        }
+        else{
+            var temp = groupBy1("company_id", jobs);
+            console.log(temp);
+            res.render("all-jobs", {user : req.user, jobs : temp});
+        }
+    })
+})
 
 
 
