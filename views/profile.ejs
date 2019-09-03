@@ -1,0 +1,48 @@
+<% include ./partials/header2 %>
+
+<div class="container profile">
+    <h2>Profile</h2>
+    <img src="<%= user.profile%>" alt="">
+    <div class="row">
+        <div class="col-sm-3 col-12">Name: </div>
+        <div class="col-sm-9 col-12"><%= user.name %></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-12">Email Id: </div>
+        <div class="col-sm-9 col-12"><%= user.emailid %></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-12">Branch: </div>
+        <div class="col-sm-9 col-12"><%= user.branch %></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-12">Phone: </div>
+        <div class="col-sm-9 col-12">
+            <form method="POST" action="/profile/<%= user._id %>?_method=PUT">
+                <input type="text" class="form-control phone-number" name="user[phone]" value="<%= user.phone %>" >
+                <button type="submit" class="btn btn-outline-dark">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container applied-intern">
+    <h5>Applied Internships:</h5>
+    <div class="row header">
+        <div class="col-sm-3 col-12">Company</div>
+        <div class="col-sm-3 col-12">Profile</div>
+        <div class="col-sm-3 col-12"> Stipend</div>
+        <div class="col-sm-3 col-12"> Application</div>
+    </div>
+    <% job_selected.forEach(function(campground){ %>
+    <div class="row job-applied">
+        <div class="col-sm-3 col-12"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> <a href="/campgrounds/<%= campground._id %>"> <%= campground.company_name %></a></div>
+        <div class="col-sm-3 col-12"><%= campground.company_profile %></div>
+        <div class="col-sm-3 col-12"> <%= campground.stipend %></div>
+        <div class="col-sm-3 col-12"> <a href="/campgrounds/<%= campground._id %>/assessment-test">Review Application</a> </div>
+    </div>
+    <% }); %>
+</div>
+
+<a href="/list-jobs">jobs</a>
+
+<% include ./partials/footer2 %>

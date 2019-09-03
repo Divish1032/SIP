@@ -1,0 +1,43 @@
+<% include partials/header2 %>
+<style>
+  .all-jobs-posting .row{
+    margin: 30px 0px;
+  }
+  .all-jobs-posting .row div{
+    border: 1px solid;
+    font-size: 14px;
+  }
+  .all-jobs-posting h2{
+    font-size: 25px;
+text-align: center;
+text-decoration: underline;
+margin-top: 40px; 
+  }
+</style>
+
+<div class="container-fluid all-jobs-posting">
+    <% jobs.forEach(function(job){ %>
+    <h2><%= job.items[0].company_name %></h2>
+    <h5><%= job.items[0].company_profile %></h5>
+
+      <% job.items.forEach(function(application){ %>
+        <div class="row">
+          <div class="col-md-2 col-12"><%= application.student_name %></div>
+          <div class="col-md-4 col-12"><%= application. student_email %></div>
+          <div class="col-md-2 col-12"><%= application.student_phone %></div>
+          <div class="col-md-4 col-12">
+            <ol>
+                <% application.answer.forEach(function(answer){ %>
+              <li>
+                  <%= answer %>
+              </li>
+              <% }) %>
+            </ol>
+          </div>
+        </div>
+      <% }) %>
+    <% }) %>
+    
+  </div>
+
+<% include partials/footer2 %>

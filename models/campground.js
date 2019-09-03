@@ -2,20 +2,19 @@ var mongoose = require("mongoose");
 
 /* Create Schema, then a model which gives you all the methods */
 var campgroundSchema = new mongoose.Schema({
-    name : String,
-    image : String,
-    comments : [{
-        type : mongoose.Schema.Types.ObjectId,
-        ref : "Comment"
+    company_name : String,
+    company_profile : String,
+    stipend : String,
+    location : String,
+    duration : String,
+    perks : String,
+    requirement : String,
+    company_details : String,
+    job_posted : String,
+    role : [{
+        type: String
     }],
-    description : String,
-    author : {
-        id : { 
-            type : mongoose.Schema.Types.ObjectId,
-            ref : "User"
-        },
-        username : String
-    }
+    
 });
 
 var Campground = mongoose.model("Campground",campgroundSchema);

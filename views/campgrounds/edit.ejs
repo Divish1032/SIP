@@ -1,29 +1,81 @@
-<% include ../partials/header %>
-<div class="container">
-    <h1 style="text-align:center;">Edit <%= campground.name%>Campground</h1>    
-      <div style="width:30%; margin :25px auto;">
-          
-        <form method="POST" action="/campgrounds/<%= campground._id %>?_method=PUT">
-            <div class="form-group">
-                <input type="text" class="form-control" name="campground[name]" value="<%= campground.name %>">
-             </div>
-             
-             <div class="form-group">
-                <input type="text" class="form-control" name="campground[image]" value="<%= campground.image %>">
-             </div>
-             
-             <div class="form-group">
-                <textarea class="form-control" name="campground[description]"><%= campground.description %></textarea>
-             </div>
-             <button type="submit" class="btn btn-primary btn-lg btn-block">Update</button>
-        </form> 
-          <a href="/campgrounds"> Go to Campgrounds</a>
-    </div>  
-  
-    
+<% include ../partials/header2 %>
+
+<div class="container-fluid post-job">
+    <h5>Edit <%= campground.company_name%>Campground</h5>
+    <form class="needs-validation post-job-form" method="POST" action="/campgrounds/<%= campground._id %>?_method=PUT" novalidate>
+        <div class="form-group">
+            <label for="company-name">Enter Company Name</label>
+            <input class="form-control" type="text"name="campground[company_name]" value="<%= campground.company_name %>" id="company-name" placeholder="Ex. Microsoft" required>
+            <div class="invalid-feedback">
+                Please provide a company name.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="intern-profile">Enter Profile Name</label>
+            <input class="form-control" type="text" name="campground[company_profile]" value="<%= campground.company_profile %>" id="intern-profile" placeholder="Ex. UI/UX Developer" required>
+            <div class="invalid-feedback">
+                Please provide a profile name.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="stipend">Enter Stipend</label>
+            <input class="form-control" type="text" name="campground[stipend]" value="<%= campground.stipend %>" id="stipend" placeholder="Ex. 5000" required>
+            <div class="invalid-feedback">
+                Please a stipend amount.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="location">Enter Location</label>
+            <input class="form-control" type="text" name="campground[location]" value="<%= campground.location %>" id="location" placeholder="Ex. Work From Home" required>
+            <div class="invalid-feedback">
+                Please provide a location for intern.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="duration">Enter Duration</label>
+            <input class="form-control" type="text" name="campground[duration]" value="<%= campground.duration %>" id="duration" placeholder="3 Months" required>
+            <div class="invalid-feedback">
+                Please provide a duration of internship.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="perks">Perks given by company</label>
+            <input class="form-control" type="text" name="campground[perks]" value="<%= campground.perks %>" id="perks" placeholder="Ex. Certificate, Letter of recommendation, Flexible work hours." required>
+            <div class="invalid-feedback">
+                Please provide perks given by company.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="role-requirement">Requirement for company</label>
+            <input class="form-control" type="text" name="campground[requirement]" value="<%= campground.requirement %>" id="role-requirement" placeholder="Ex. Angular, Nodejs, Cloud Computing" required>
+            <div class="invalid-feedback">
+                Please provide the requirements for the company.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="company-detail">Company Details</label>
+            <textarea class="form-control" id="company-detail" name="campground[company_details]" value="<%=campground.company_details%>" rows="6" required><%=campground.company_details%></textarea>
+            <div class="invalid-feedback">
+                Please provide a description of the company.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="job-posted">Job Posted On</label>
+            <input class="form-control" type="text" id="job-posted" name="campground[job_posted]" value="<%= campground.job_posted %>" placeholder="Ex.  11 Aug'19" required>
+            <div class="invalid-feedback">
+                Please provide the date of posting for the job.
+            </div>
+        </div>
+        <div class="form-group" id="content">
+            <label for="reponsibility">Intern Role and Responsibilty</label>
+            <input class="form-control" type="text" id="reponsibility" name="campground[role]" value="<%= campground.role %>" placeholder="Ex.  Submit the task on EOD; Work on the given task on web development "  required>
+            <div class="invalid-feedback">
+                Please provide at least one role of the intern.
+            </div>
+        </div>
+        <hr>
+        <button class="btn btn-light post-job-submit" type="submit">Update form</button>
+    </form>
 </div>
 
-
-
-
-<% include ../partials/footer %>
+<% include ../partials/footer2 %>

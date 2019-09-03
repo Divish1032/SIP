@@ -1,67 +1,65 @@
-<% include ../partials/header %>
 
-<div class="container">
-    <div class='row'>
-        <div class="col-md-3">
-            <p class="lead">Yelp Camp</p>
-            <div class="list-group">
-                <li class="list-group-item active"> Info 1</li>
-                <li class="list-group-item"> Info 2</li>
-                <li class="list-group-item"> Info 3</li>
-            </div>
+<% include ../partials/header2 %>
+
+<div class="container-fluid internship-detail">
+    <h2>Internship Details</h2>
+    <% if(applied){ %>
+    <span style="background: #fa8231;color: white;padding: 10px 20px;float: right;">Applied</span>
+    <% } %>
+    <h5 style="margin-top: 60px;">About <%= campground.company_name %> :</h5>
+    <p><%= campground.company_details %></p>
+    <div class="row">
+        <div class="col-sm-6 col-12">
+            <h5>Internship Profile :</h5>
+             <p><%= campground.company_profile %></p>
         </div>
-        <div class="col-md-9">
-            <div class="thumbnail">
-                 <img src="<%= campground.image %>"  class="img-responsive">
-                 <div class="caption-full">
-                     <h4 class="pull-right">$9.00/night</h4>
-                     <h4><a><%= campground.name %></a></h4>
-                     <p><%= campground.description %></p>
-                     <p>
-                         Created By : <em> <strong><%= campground.author.username %></strong></em>
-                     </p>
-                     <% if(currentUser && campground.author.id.equals(currentUser._id)){ %>    <!-- This is cool. Every route has currentUser -->
-                          <a class="btn btn-xs btn-warning" href="/campgrounds/<%= campground._id %>/edit">
-                             Edit
-                         </a>
-                         <form class="deleteForm" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
-                              <button class="btn btn-xs btn-danger">
-                                 Delete
-                             </button>
-                         </form>
-                     <% } %>
-                        
-                 </div>
-            </div>
-            
-            <div class="well">
-                <div class="text-right">
-                    <a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new"> Add a new comment</a>
-                </div>
-                <hr>
-                <% campground.comments.forEach(function(comment){ %>
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <strong> <%= comment.author.username %> </strong>
-                            <span class="pull-right">10 Days ago</span>
-                            <p> <%= comment.text %> </p>
-                                <% if(currentUser && comment.author.id.equals(currentUser._id)){ %> 
-                                    <a class="btn btn-xs btn-warning" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">
-                                        Edit
-                                    </a>
-                                    <form class="deleteForm" method="POST" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id%>?_method=DELETE">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete"> 
-                                    </form>
-                                <% } %>
-                        </div>
-                    </div>
-                <% }); %>
-            </div>
-            <a href="/campgrounds">Go Back</a>
+        <div class="col-sm-6 col-12">
+            <h5>Location :</h5>
+            <p>₹ <%= campground.location %>/-</p>
         </div>
     </div>
-    
-</div>
-    
 
-<% include ../partials/footer %>
+    <h5>Your Role And Responsibility :</h5>
+    <p>Your responsibility for the intern will be:</p>
+    <ol>
+        <% campground.role.forEach(function(role){ %> <li > <%= role %></li> <% }); %>
+    </ol>
+
+    <h5>Area of Expertise :</h5>
+    <p><%= campground.requirement %></p>
+
+    <div class="row">
+        <div class="col-sm-3 col-12">
+            <h5>Job Posted On :</h5>
+             <p><%= campground.job_posted %></p>
+        </div>
+        <div class="col-sm-3 col-12">
+            <h5>Stipend :</h5>
+            <p>₹ <%= campground.stipend %>/-</p>
+        </div>
+        <div class="col-sm-3 col-12">
+            <h5>Duration of Internship :</h5>
+            <p><%= campground.duration %></p>
+        </div>
+    </div>
+    <h5>Perks :</h5>
+    <p><%= campground.perks %></p>
+    <% if(!applied){ %>
+    <a href="/campgrounds/<%= campground._id %>/assessment-test" class="btn btn-outline-info">Click to Apply</a>
+    <% } else { %>
+    <a href="/campgrounds/<%= campground._id %>/assessment-test" class="btn btn-outline-info">Review Application</a>
+    <% } %>
+
+    <% if(currentUser && currentUser.emailid == 'divyansh.kumar.min16@itbhu.ac.in'){ %>
+    <div class="admin-button">
+        <a href="/campgrounds/<%= campground._id %>/edit" class="btn btn-outline-info">Edit Job</a>
+        <form class="deleteForm" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+            <button class="btn btn-xs btn-outline-danger">Delete</button>
+        </form>
+    </div>
+    <% } %>
+</div>
+
+
+
+<% include ../partials/footer2 %>

@@ -1,66 +1,119 @@
 var express = require("express");
 var router = express.Router();
-var User = require("../models/user")
 var passport = require("passport");
 var flash = require("connect-flash");
+var middleware = require("../middleware");
+const User = require('../models/student');
+var Campground = require("../models/campground");
+var Application = require("../models/applied-interns");
 
-/*Routes*/
-router.get("/",function(req,res){
-   res.render("landing"); 
+router.get('/', (req, res) => {
+        res.render("landing", {user : req.user}); 
 });
 
+router.get('/auth/google', passport.authenticate('google', {
+    scope: ['profile', 'email']
+}));
 
-// ***************
-/* Auth Routes */
-// ***************
+router.get('/logout', (req, res) => {
+    req.logout();
+    req.flash("success","Logged you out");
+    res.redirect("/");
+});
+
+router.get('/profile', middleware.isLoggedIn, (req,res) => {
+    var job_selected = [];
+    
+        Campground.find({}, function(err, alljobs) {
+            if(err){console.log(err);}
+            else{
+                alljobs.forEach(job => {
+                    req.user.job_applied_company.forEach(elem => {
+                        if(job._id == elem.id){
+                            job_selected.push(job);
+                            console.log(job)
+                        }
+                    })
+                })
+            }
+            job_selected.forEach(elem => {
+                console.log("++" + elem);
+            })
+            res.render("profile", {user : req.user, job_selected : job_selected});  
+        })
+   
+    
+} )
+
+router.get('/auth/google/callback',
+    passport.authenticate('google', {
+        failureRedirect: '/'
+    }),
+    (req, res) => {
+        res.redirect('/campgrounds');
+    }
+);
+
+router.put("/profile/:id", middleware.isLoggedIn, function(req, res){
+    User.findByIdAndUpdate(req.params.id, req.body.user, function(err, updatedCampground){
+         if(err){ 
+             res.redirect('/');
+         }
+         else{
+             res.redirect("/profile");
+         }
+    }); 
+ });
+
+
+ router.get("/list-jobs", middleware.checkCampgroundOwnership, function(req, res){
+     Application.find({}, function(err, jobs){
+         if(err){
+             console.log(err);
+             res.redirect('/profile');
+         }
+         else{
+             var temp = groupBy1("company_id", jobs);
+             console.log(temp);
+             res.render("all-jobs", {user : req.user, jobs : temp});
+         }
+     })
+ })
+
+
+
 
 // Show register routes  (Or the SignUp routes)
 
-router.get("/register", function(req, res) {
-   res.render("register"); 
-});
-
-router.post("/register", function(req, res) {
-    var newUser = new User({ username : req.body.username});
-    // This method won't allow you to register an already registered user
-    User.register(newUser, req.body.password, function(err, user){
-        if(err){
-            // console.log(err);      // 'err' is an object that is getting from database.
-            // Always have the flash message just before redirect.
-            // And console log apparently clears the flash. Who would have thought about that.
-            // Refer http://stackoverflow.com/questions/41558884/node-connect-flash-not-working-on-redirect  Not helping
-            
-            // Apparently res.render("register") didn't work with flash. But res.redirect("/register") worked. Yay !!
-            req.flash("error", err.message);   // Error occurs when the user is taken, password is empty etc.
-            return res.redirect("/register");  // Shortcircut everything. Else the below code would run as well and that would throw an error
+function groupBy1(key, array) {
+    var result = [];
+    for (var i = 0; i < array.length; i++) {
+      var added = false;
+      for (var j = 0; j < result.length; j++) {
+        if (result[j][key] == array[i][key]) {
+          result[j].items.push(array[i]);
+          added = true;
+          break;
         }
-        passport.authenticate("local")(req, res, function(){
-            req.flash("success", "Welcome to Yelp Camp " + user.username); // 'user' is coming from database
-            res.redirect("/campgrounds");
-        })
-    });
-});
+      }
+      if (!added) {
+        var entry = {items: []};
+        entry[key] = array[i][key];
+        entry.items.push(array[i]);
+        result.push(entry);
+      }
+    }
+    return result;
+  }
 
 
 // Login Routes
 router.get("/login", function(req, res) {
-    res.render("login");
+    res.render("login", {user : req.user});
 });
 
-router.post("/login", passport.authenticate("local",
-    {
-        successRedirect : "/campgrounds",
-        failureRedirect : "/login"
-    }), function(req, res) {
-    
-});
 
-// Logout Routes
-router.get("/logout", function(req, res) {
-   req.logout(); 
-   req.flash("success","Logged you out");
-   res.redirect("/campgrounds");
-});
+
 
 
 module.exports = router;
