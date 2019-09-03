@@ -531,15 +531,3 @@
             <% } %>
         </div>
     </nav>
-    <div class="container">
-        <% if(error && error.length > 0){  %>   <!--To prevent error when error is undefined.   undefined.length gives error --> 
-            <div class="alert alert-danger" role="alert">    <!-- if([]) => returns true . But why ? -->
-            <%= error %>
-            </div>
-        <% } %>
-        <% if(success && success.length > 0){  %>
-            <div class="alert alert-success" role="alert">
-            <%= success %>
-            </div>
-        <% } %> 
-    </div>
