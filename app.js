@@ -85,7 +85,7 @@ mongoose.connect('mongodb://ecell:ecell007@ds215988.mlab.com:15988/student_inter
 app.use("/",indexRoutes);
 app.use("/campgrounds",campgroundRoutes);       // router.get("/"......
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, function(){
     console.log("Server started");
