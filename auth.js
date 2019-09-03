@@ -14,7 +14,7 @@ module.exports = (passport) => {
     passport.use(new GoogleStrategy({
             clientID: "124430605126-7ulur1p71dkg0hf6ldn5macb58phpau5.apps.googleusercontent.com",
             clientSecret: "opEEllaBpcP5neIXhpx0PzWp",
-            callbackURL: "http://exampleintern.com:8000/auth/google/callback"
+            callbackURL: "https://student-internship-portal.herokuapp.com/auth/google/callback"
         },
         (token, refreshToken, profile, done) => {
             User.findOne({googleid : profile.id}).then((currentUser) => {
