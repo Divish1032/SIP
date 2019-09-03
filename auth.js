@@ -28,7 +28,7 @@ module.exports = (passport) => {
                         googleid : profile.id,
                         emailid : profile._json.email,
                         branch : profile.name.familyName,
-                        phone : '987654321',
+                        phone : '9876543210',
                         profile : profile._json.picture,
                         job_applied : []
                     }).save().then((newUser) => {

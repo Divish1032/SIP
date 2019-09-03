@@ -43,6 +43,8 @@
     <% }); %>
 </div>
 
-<a href="/list-jobs">jobs</a>
+<% if(currentUser && currentUser.emailid == 'divyansh.kumar.min16@itbhu.ac.in'){ %>
+<a class="btn btn-outline-dark" href="/list-jobs" style="text-align: center; margin-top: 20px">All Applied Jobs</a>
+<% }) %>
 
 <% include ./partials/footer2 %>

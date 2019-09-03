@@ -357,6 +357,8 @@
             .prof{
                 color: white;
                 cursor: pointer;
+                position: relative;
+                top: 6px;
             }
             .prof i {
                 margin-left: 4px;
@@ -388,6 +390,7 @@
                 color: #fa8231;
                 text-decoration: underline;
             }
+            
 
             @media (max-width: 800px ) and (min-width : 401px) {
                 .profile .row{
@@ -485,7 +488,7 @@
             <% if(!user) { %>
             <a class="nav-link" href="/login"><button type="button" class="btn btn-outline-info">Login</button></a>
             <% } else{ %>
-            <a class="prof" href="/profile"><%= user.name %> <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            <a class="prof" href="/profile" style="margin-top: 14px;position: relative;left: -8px;"><%= user.name %> <i class="fa fa-arrow-down" aria-hidden="true"></i>
             </a>
             <a class="nav-link" href="/logout"><button type="button" class="btn btn-outline-info">LogOut</button></a>
             <% } %>
