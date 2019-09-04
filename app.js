@@ -58,22 +58,10 @@ app.use(function(req, res , next){
 
 
 /*Database Connections*/
-mongoose.connect('mongodb://ecell:ecell007@ds215988.mlab.com:15988/student_internship_portal');
+mongoose.connect(process.env.DATABASE_URL);
+// 'mongodb://ecell:ecell007@ds215988.mlab.com:15988/student_internship_portal'
 
 
-/*Seeding the DB file*/
-//var SeedDb = require("./seeds");
-//SeedDb();
-
-
-
-
-
-
-
-
-
-/* Tell express to use this routes*/
 
 /* This would work without any params merge issues =>  where the routes use req.params.id */
 
@@ -83,7 +71,7 @@ mongoose.connect('mongodb://ecell:ecell007@ds215988.mlab.com:15988/student_inter
 
 /* Routes */
 app.use("/",indexRoutes);
-app.use("/campgrounds",internshipRoutes);       // router.get("/"......
+app.use("/internships",internshipRoutes);       // router.get("/"......
 
 const PORT = process.env.PORT || 8000;
 

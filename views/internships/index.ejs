@@ -3,7 +3,7 @@
 <div class="container-fluid job-portal">
     <!-- Featured Internship-->
    <h2> Find Your Suitable Internship</h2>
-   <% campgrounds.forEach(function(campground){ %>
+   <% internships.forEach(function(internship){ %>
    <div class="card  jobs">
      <div class="card-header">
        Featured
@@ -12,28 +12,28 @@
        <div class="row">
          <div class="col-md-3 col-sm-4 col-12"><img src="images/empty.png" width="100" height="85" class="d-inline-block align-top" alt=""> </div>
          <div class=" col-md-9 col-sm-8 col-12">
-           <h5 class="card-title"><%= campground.company_profile %></h5>
-           <small><%= campground.company_name %></small>
+           <h5 class="card-title"><%= internship.company_profile %></h5>
+           <small><%= internship.company_name %></small>
            <div class="row">
-             <div class="col-sm-12 col-md-6 field">Duration - <%= campground.duration %></div>
-             <div class="col-sm-12 col-md-6 field"><p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= campground.company_profile %> </p></div>
+             <div class="col-sm-12 col-md-6 field">Duration - <%= internship.duration %></div>
+             <div class="col-sm-12 col-md-6 field"><p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= internship.company_profile %> </p></div>
            </div>
            <div class="row">
-             <div class="col-sm-12 col-md-6 field">Stipend - ₹<%= campground.stipend %></div>
-             <div class="col-sm-12 col-md-6 field"><a href="/campgrounds/<%= campground._id %>" class="btn btn-outline-info">View Details</a></div>
+             <div class="col-sm-12 col-md-6 field">Stipend - ₹<%= internship.stipend %></div>
+             <div class="col-sm-12 col-md-6 field"><a href="/internships/<%= internship._id %>" class="btn btn-outline-info">View Details</a></div>
            </div>
          </div>
        </div>
      </div>
      <div class="card-footer text-muted">
-         Posted <i class="fa fa-arrow-right" aria-hidden="true"></i> <span> <%= campground.job_posted %></span>
+         Posted <i class="fa fa-arrow-right" aria-hidden="true"></i> <span> <%= internship.job_posted %></span>
      </div>
    </div>
 
    <% }); %>
    
    <% if(currentUser && currentUser.emailid == 'divyansh.kumar.min16@itbhu.ac.in'){ %>
-   <a class="btn btn-outline-dark new-job" href="/campgrounds/new">Post A New Job</a>
+   <a class="btn btn-outline-dark new-job" href="/internships/new">Post A New Job</a>
    <% } %>
 </div>
 

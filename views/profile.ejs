@@ -33,12 +33,12 @@
         <div class="col-sm-3 col-12"> Stipend</div>
         <div class="col-sm-3 col-12"> Application</div>
     </div>
-    <% job_selected.forEach(function(campground){ %>
+    <% job_selected.forEach(function(internship){ %>
     <div class="row job-applied">
-        <div class="col-sm-3 col-12"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> <a href="/campgrounds/<%= campground._id %>"> <%= campground.company_name %></a></div>
-        <div class="col-sm-3 col-12"><%= campground.company_profile %></div>
-        <div class="col-sm-3 col-12"> <%= campground.stipend %></div>
-        <div class="col-sm-3 col-12"> <a href="/campgrounds/<%= campground._id %>/assessment-test">Review Application</a> </div>
+        <div class="col-sm-3 col-12"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> <a href="/internships/<%= internship._id %>"> <%= internship.company_name %></a></div>
+        <div class="col-sm-3 col-12"><%= internship.company_profile %></div>
+        <div class="col-sm-3 col-12"> <%= internship.stipend %></div>
+        <div class="col-sm-3 col-12"> <a href="/internships/<%= internship._id %>/assessment-test">Review Application</a> </div>
     </div>
     <% }); %>
 </div>

@@ -14,8 +14,9 @@ router.get("/", middleware.isLoggedIn, function(req, res){
     Internship.find({},function(err, Internships){
        if(err){console.log(err);}
        else{
+           console.log(Internships);
            // res.render("campgrounds/index", {campgrounds : campgrounds, currentUser : req.user});
-           res.render("internships/index", {campgrounds : Internships, user : req.user});
+           res.render("internships/index", {internships : Internships, user : req.user});
        }
     });
 }); 
@@ -59,9 +60,10 @@ router.post("/",middleware.checkCampgroundOwnership, function(req, res) {
    }
    result[j] = str;
    var newInternship = { company_name : name, company_profile : profile, stipend : stipend, location : location, duration : duration, perks : perks, requirement : require, company_details : company_details, job_posted : job_posted, role : result, author : author};
-   Internship.create(newInternship,function(err, newlyCreatedIntership){
+   Internship.create(newInternship, function(err, newlyCreatedIntership){
       if(err){console.log(err);}
       else{
+        req.flash("success","Successfully posted a new internship");
         res.redirect("/internships");       
       }
    });
@@ -81,11 +83,11 @@ router.get("/:id", middleware.isLoggedIn, function(req, res) {
             job_applied_answers = element.answer;
         }
     });
-    Internship.findById(req.params.id).exec(function(err,foundInternship){
+    Internship.findById(req.params.id).exec(function(err, foundInternship){
     /* Campground.findById(req.params.id, function(err, foundCampground){ */
        if(err){ console.log(err); }
        else{
-           res.render("internships/show", {campground : foundInternship, user: req.user, applied : applied});
+           res.render("internships/show", {internship : foundInternship, user: req.user, applied : applied});
        }
     });
 });
@@ -103,7 +105,7 @@ router.get("/:id/assessment-test", middleware.isLoggedIn, function(req, res){
     Internship.findById(req.params.id, function(err, foundInternship) {
         if(err){console.log(err);}
         else{
-         res.render("internships/assessment", {campground : foundInternship, user: req.user, applied : applied, answer : job_applied_answers});
+         res.render("internships/assessment", {internship : foundInternship, user: req.user, applied : applied, answer : job_applied_answers});
         }
     })
 })
@@ -113,7 +115,7 @@ router.get("/:id/edit", middleware.checkCampgroundOwnership, function(req, res) 
     Internship.findById(req.params.id, function(err, foundInternship) {
        if(err){console.log(err);}
        else{
-        res.render("internships/edit", {campground : foundInternship, user: req.user});
+        res.render("internships/edit", {internship : foundInternship, user: req.user});
        }
    })
     
@@ -143,6 +145,7 @@ router.put("/:id/job-apllication", middleware.isLoggedIn, function(req, res) {
             res.redirect('/internships');
         }
         else{
+            req.flash("success","Application apllied");
             res.redirect("/internships/" + req.params.id);
         }
     })
@@ -154,6 +157,7 @@ router.put("/:id",middleware.checkCampgroundOwnership, function(req, res){
             res.redirect('/internships');
         }
         else{
+            req.flash("success","Successfully updated the internship");
             res.redirect("/internships/" + req.params.id);
         }
    }); 
@@ -167,6 +171,7 @@ router.delete("/:id", middleware.checkCampgroundOwnership,function(req, res){
         if(err){
             res.redirect("/internships");
         } else{
+            req.flash("success","Successfully deleted an internship");
             res.redirect("/internships");
         }
     })

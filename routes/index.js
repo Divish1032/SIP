@@ -52,7 +52,8 @@ router.get('/auth/google/callback',
         failureRedirect: '/'
     }),
     (req, res) => {
-        res.redirect('/campgrounds');
+        req.flash("success","Successfully logged you in");
+        res.redirect('/internships');
     }
 );
 
@@ -62,6 +63,7 @@ router.put("/profile/:id", middleware.isLoggedIn, function(req, res){
              res.redirect('/');
          }
          else{
+            req.flash("success","Successfully updated your number");
              res.redirect("/profile");
          }
     }); 

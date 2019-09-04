@@ -6,54 +6,54 @@
     <% if(applied){ %>
     <span style="background: #fa8231;color: white;padding: 10px 20px;float: right;">Applied</span>
     <% } %>
-    <h5 style="margin-top: 60px;">About <%= campground.company_name %> :</h5>
-    <p><%= campground.company_details %></p>
+    <h5 style="margin-top: 60px;">About <%= internship.company_name %> :</h5>
+    <p><%= internship.company_details %></p>
     <div class="row">
         <div class="col-sm-6 col-12">
             <h5>Internship Profile :</h5>
-             <p><%= campground.company_profile %></p>
+             <p><%= internship.company_profile %></p>
         </div>
         <div class="col-sm-6 col-12">
             <h5>Location :</h5>
-            <p>₹ <%= campground.location %></p>
+            <p>₹ <%= internship.location %></p>
         </div>
     </div>
 
     <h5>Your Role And Responsibility :</h5>
     <p>Your responsibility for the intern will be:</p>
     <ol>
-        <% campground.role.forEach(function(role){ %> <li > <%= role %></li> <% }); %>
+        <% internship.role.forEach(function(role){ %> <li > <%= role %></li> <% }); %>
     </ol>
 
     <h5>Area of Expertise :</h5>
-    <p><%= campground.requirement %></p>
+    <p><%= internship.requirement %></p>
 
     <div class="row">
         <div class="col-sm-3 col-12">
             <h5>Job Posted On :</h5>
-             <p><%= campground.job_posted %></p>
+             <p><%= internship.job_posted %></p>
         </div>
         <div class="col-sm-3 col-12">
             <h5>Stipend :</h5>
-            <p>₹ <%= campground.stipend %>/-</p>
+            <p>₹ <%= internship.stipend %>/-</p>
         </div>
         <div class="col-sm-3 col-12">
             <h5>Duration of Internship :</h5>
-            <p><%= campground.duration %></p>
+            <p><%= internship.duration %></p>
         </div>
     </div>
     <h5>Perks :</h5>
-    <p><%= campground.perks %></p>
+    <p><%= internship.perks %></p>
     <% if(!applied){ %>
-    <a href="/campgrounds/<%= campground._id %>/assessment-test" class="btn btn-outline-info">Click to Apply</a>
+    <a href="/internships/<%= internship._id %>/assessment-test" class="btn btn-outline-info">Click to Apply</a>
     <% } else { %>
-    <a href="/campgrounds/<%= campground._id %>/assessment-test" class="btn btn-outline-info">Review Application</a>
+    <a href="/internships/<%= internship._id %>/assessment-test" class="btn btn-outline-info">Review Application</a>
     <% } %>
 
     <% if(currentUser && currentUser.emailid == 'divyansh.kumar.min16@itbhu.ac.in'){ %>
     <div class="admin-button">
-        <a href="/campgrounds/<%= campground._id %>/edit" class="btn btn-outline-info">Edit Job</a>
-        <form class="deleteForm" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+        <a href="/internships/<%= internship._id %>/edit" class="btn btn-outline-info">Edit Job</a>
+        <form class="deleteForm" action="/internships/<%= internship._id %>?_method=DELETE" method="POST">
             <button class="btn btn-xs btn-outline-danger">Delete</button>
         </form>
     </div>
