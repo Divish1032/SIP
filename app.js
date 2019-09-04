@@ -9,6 +9,7 @@ var cookieParser = require('cookie-parser'),
     passport = require('passport'),
     cookieSession = require('cookie-session');
 const  auth = require('./auth');
+const keys = require('./models/keys');
 
 
 auth(passport);
@@ -58,7 +59,7 @@ app.use(function(req, res , next){
 
 
 /*Database Connections*/
-mongoose.connect(process.env.DATABASE_URL);
+mongoose.connect(process.env.DATABASE_URL || keys.admin.mongoDB);
 // 'mongodb://ecell:ecell007@ds215988.mlab.com:15988/student_internship_portal'
 
 

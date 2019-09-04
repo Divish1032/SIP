@@ -1,7 +1,7 @@
 const GoogleStrategy = require('passport-google-oauth20');
 const passport =require('passport');
 const User = require('./models/student');
-
+const keys =require('./models/keys');
 module.exports = (passport) => {
     passport.serializeUser((user, done) => {
         done(null, user.id);
@@ -13,9 +13,9 @@ module.exports = (passport) => {
         
     }); 
     passport.use(new GoogleStrategy({
-            clientID: "124430605126-7ulur1p71dkg0hf6ldn5macb58phpau5.apps.googleusercontent.com",
-            clientSecret: "opEEllaBpcP5neIXhpx0PzWp",
-            callbackURL: "http://exampleintern.com:8000/auth/google/callback"
+            clientID: process.env.CLIENT_ID || keys.google.clientID ,
+            clientSecret: process.env.CLIENT_SECRET || keys.google.clientSecret,
+            callbackURL: process.env.CALLBACK_URL || keys.google.callbackURL
         },
         (token, refreshToken, profile, done) => {
             User.findOne({googleid : profile.id}).then((currentUser) => {
