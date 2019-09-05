@@ -390,7 +390,7 @@
             }
 
             .prof{
-                color: white;
+                color: #808c8e;
                 cursor: pointer;
                 
             }
@@ -400,7 +400,7 @@
                 
             }
             .prof:hover{
-                color: #ecececcc;
+                color: rgba(255,255,255,.75);
             }
 
             .profile{
@@ -505,6 +505,12 @@
             }, false);
             })();
             setTimeout(function(){$('.flash').remove();}, 5000);
+           
+            $('.navbar-nav li').click(function(){
+                alert();
+                $('.active').removeClass('active');
+                $(this).addClass('active');
+            }); 
         </script>
 </head>
 <body>
@@ -519,13 +525,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto ">
-                <li class="nav-item active">
+                <li class="nav-item homeclass">
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item jobclass">
                     <a class="nav-link" href="/internships">Jobs</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item aboutclass">
                     <a  class="nav-link" href="/about-us">Know More</a>
                 </li>            
             </ul>
@@ -542,11 +548,14 @@
         <% if(error && error.length > 0){  %>   <!--To prevent error when error is undefined.   undefined.length gives error --> 
             <div class="alert alert-danger" role="alert">    <!-- if([]) => returns true . But why ? -->
             <%= error %>
+            <span style="float: right;cursor: pointer;" class="clickCross"><i class="fa fa-times" aria-hidden="true"></i></span>
             </div>
         <% } %>
         <% if(success && success.length > 0){  %>
             <div class="alert alert-success" role="alert">
             <%= success %>
+            <span style="float: right;cursor: pointer;" class="clickCross"><i class="fa fa-times" aria-hidden="true"></i></span>
             </div>
+            
         <% } %> 
     </div>

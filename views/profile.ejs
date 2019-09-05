@@ -37,7 +37,7 @@
     <div class="row job-applied">
         <div class="col-sm-3 col-12"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> <a href="/internships/<%= internship._id %>"> <%= internship.company_name %></a></div>
         <div class="col-sm-3 col-12"><%= internship.company_profile %></div>
-        <div class="col-sm-3 col-12"> <%= internship.stipend %></div>
+        <div class="col-sm-3 col-12">₹ <%= internship.stipend %>/-</div>
         <div class="col-sm-3 col-12"> <a href="/internships/<%= internship._id %>/assessment-test">Review Application</a> </div>
     </div>
     <% }); %>
