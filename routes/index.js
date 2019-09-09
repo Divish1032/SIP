@@ -30,8 +30,7 @@ router.get('/profile', middleware.isLoggedIn, (req,res) => {
     if(req.user.phone == null){
         req.flash("error","Please enter your phone number");
     }
-    else{
-        Internship.find({}, function(err, alljobs) {
+    Internship.find({}, function(err, alljobs) {
             if(err){console.log(err);}
             else{
                 alljobs.forEach(job => {
@@ -48,7 +47,6 @@ router.get('/profile', middleware.isLoggedIn, (req,res) => {
             })
             res.render("profile", {user : req.user, job_selected : job_selected});  
         });
-    }
 } )
 
 router.get('/auth/google/callback',
