@@ -43,11 +43,12 @@ router.get('/profile', middleware.isLoggedIn, (req,res) => {
             job_selected.forEach(elem => {
                 console.log("++" + elem);
             })
+            
+            res.render("profile", {user : req.user, job_selected : job_selected});  
             if(req.user.phone == null){
                 console.log("==================")
                 req.flash("error","Please enter your phone number");
             }
-            res.render("profile", {user : req.user, job_selected : job_selected});  
         });
 } )
 
