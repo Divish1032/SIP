@@ -1,6 +1,9 @@
 <% include ./partials/header2 %>
 
 <div class="container profile">
+    <% if(user.phone == null){ %>
+    <p style="font-size: 16px; margin-top: 11px; color: red; text-decoration: underline;">Please enter the phone number!</p>
+    <% } %>
     <h2>Profile</h2>
     <img src="<%= user.profile%>" alt="">
     <div class="row">
@@ -22,9 +25,7 @@
                 <input type="text" class="form-control phone-number" name="user[phone]" value="<%= user.phone %>" >
                 <button type="submit" class="btn btn-outline-dark">Update</button>
             </form>
-            <% if(user.phone == null){ %>
-            <p style="font-size: 16px; margin-top: 11px; color: red; text-decoration: underline;">Please enter the phone number!</p>
-            <% } %>
+            
         </div>
     </div>
 </div>
