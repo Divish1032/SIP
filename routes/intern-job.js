@@ -93,21 +93,27 @@ router.get("/:id", middleware.isLoggedIn, function(req, res) {
 });
 
 router.get("/:id/assessment-test", middleware.isLoggedIn, function(req, res){
-    var applied = false;
-    var job_applied_answers = []
-    req.user.job_applied_company.forEach(element => {
-        if(element.id == req.params.id){
-            applied = true;
-            job_applied_answers = element.answer;
-        }
-    });
+    if(req.user.phone == null){
+        res.redirect("profile");
+    }
+    else{
+        var applied = false;
+        var job_applied_answers = []
+        req.user.job_applied_company.forEach(element => {
+            if(element.id == req.params.id){
+                applied = true;
+                job_applied_answers = element.answer;
+            }
+        });
 
-    Internship.findById(req.params.id, function(err, foundInternship) {
-        if(err){console.log(err);}
-        else{
-         res.render("internships/assessment", {internship : foundInternship, user: req.user, applied : applied, answer : job_applied_answers});
-        }
-    })
+        Internship.findById(req.params.id, function(err, foundInternship) {
+            if(err){console.log(err);}
+            else{
+            res.render("internships/assessment", {internship : foundInternship, user: req.user, applied : applied, answer : job_applied_answers});
+            }
+        })
+    }
+    
 })
 
 // Edit Route
