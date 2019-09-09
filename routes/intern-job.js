@@ -94,7 +94,7 @@ router.get("/:id", middleware.isLoggedIn, function(req, res) {
 
 router.get("/:id/assessment-test", middleware.isLoggedIn, function(req, res){
     if(req.user.phone == null){
-        res.redirect("profile");
+        res.redirect("/profile");
     }
     else{
         var applied = false;
