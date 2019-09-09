@@ -27,10 +27,7 @@ router.get('/about-us', (req, res) => {
 
 router.get('/profile', middleware.isLoggedIn, (req,res) => {
     var job_selected = [];
-    if(req.user.phone == null){
-        console.log("==================")
-        req.flash("error","Please enter your phone number");
-    }
+    
     Internship.find({}, function(err, alljobs) {
             if(err){console.log(err);}
             else{
@@ -46,6 +43,10 @@ router.get('/profile', middleware.isLoggedIn, (req,res) => {
             job_selected.forEach(elem => {
                 console.log("++" + elem);
             })
+            if(req.user.phone == null){
+                console.log("==================")
+                req.flash("error","Please enter your phone number");
+            }
             res.render("profile", {user : req.user, job_selected : job_selected});  
         });
 } )
