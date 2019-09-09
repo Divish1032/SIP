@@ -45,10 +45,6 @@ router.get('/profile', middleware.isLoggedIn, (req,res) => {
             })
             
             res.render("profile", {user : req.user, job_selected : job_selected});  
-            if(req.user.phone == null){
-                console.log("==================")
-                req.flash("error","Please enter your phone number");
-            }
         });
 } )
 

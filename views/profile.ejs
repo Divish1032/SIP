@@ -22,6 +22,9 @@
                 <input type="text" class="form-control phone-number" name="user[phone]" value="<%= user.phone %>" >
                 <button type="submit" class="btn btn-outline-dark">Update</button>
             </form>
+            <% if(user.phone == null){ %>
+            <p>Please enter the phone number</p>
+            <% } %>
         </div>
     </div>
 </div>
