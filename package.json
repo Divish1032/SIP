@@ -23,6 +23,7 @@
     "method-override": "^2.3.8",
     "mongoose": "^4.9.1",
     "nodeQuery": "0.0.9-1",
+    "nodemailer": "^4.7.0",
     "passport": "^0.3.2",
     "passport-google-oauth": "^2.0.0",
     "passport-google-oauth20": "^2.0.0",

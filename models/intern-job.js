@@ -14,6 +14,9 @@ var internshipSchema = new mongoose.Schema({
     role : [{
         type: String
     }],
+    email : String,
+    can_apply_portal : String,
+    email_application_requirement : String
     
 });
 

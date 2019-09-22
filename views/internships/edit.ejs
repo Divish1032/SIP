@@ -73,6 +73,27 @@
                 Please provide at least one role of the intern.
             </div>
         </div>
+        <div class="form-group">
+            <label for="reponsibility">Can Apply On Portal?</label>
+            <input class="form-control" type="text" id="reponsibility" name="internship[can_apply_portal]" value="<%= internship.can_apply_portal %>" placeholder="Ex. yes or no"  required>
+            <div class="invalid-feedback">
+                Please provide at least one option of the two.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="reponsibility">Email Id</label>
+            <input class="form-control" type="text" id="reponsibility" name="internship[email]" value="<%= internship.email%>" placeholder="example@gmail.com"  required>
+            <div class="invalid-feedback">
+                Please provide at least one option of the two.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="reponsibility">Email Application Requirement</label>
+            <input class="form-control" type="text" id="reponsibility" name="internship[email_application_requirement]" value="<%= internship.email_application_requirement %>"  placeholder="Write to us at  with a Brief cover letter and attach your resume"  required>
+            <div class="invalid-feedback">
+                Please provide emailId.
+            </div>
+        </div>
         <hr>
         <button class="btn btn-light post-job-submit" type="submit">Update form</button>
     </form>

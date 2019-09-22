@@ -4,11 +4,18 @@ const User = require('../models/student')
 var Internship = require("../models/intern-job");
 var Application = require("../models/applied-interns");
 // var middleware = require("../middleware/index");  // Inddex.js is the sort of default file
-var middleware = require("../middleware");
+var middleware = require("../middleware")
+    nodeMailer = require('nodemailer')
+
+let transporter = nodeMailer.createTransport({
+    service: 'gmail',
+    auth: {
+            user: 'divyansh.kumar.min16@itbhu.ac.in',
+            pass: 'Whysoserious@1032'
+        }
+});
 
 
-/* Campgrounds Route */
-// Show All Campgrounds Route   -- Index
 router.get("/", middleware.isLoggedIn, function(req, res){
     // console.log(req.user);  // Contains the username and id of the user as an object. Use this in the header template.
     Internship.find({},function(err, Internships){
@@ -27,8 +34,6 @@ router.get("/new",middleware.checkCampgroundOwnership, function(req, res) {
    res.render("internships/new", {user : req.user}) ;
 });
 
-// Create Route
-
 
 router.post("/",middleware.checkCampgroundOwnership, function(req, res) {
    var name = req.body.company_name;
@@ -37,11 +42,13 @@ router.post("/",middleware.checkCampgroundOwnership, function(req, res) {
    var location = req.body.location;
    var duration  = req.body.duration;
    var perks = req.body.perks;
-   
    var require = req.body.role_requirement;
    var company_details = req.body.company_detail;
    var job_posted = req.body.job_posted;
    var role = req.body.role_responsibility;
+   var can_apply_portal = req.body.can_appply_portal;
+   var email = req.body.emailId;
+   var email_app_req = req.body.email_app_req;
    var author = {
     id : req.user._id
     }
@@ -59,7 +66,7 @@ router.post("/",middleware.checkCampgroundOwnership, function(req, res) {
        }
    }
    result[j] = str;
-   var newInternship = { company_name : name, company_profile : profile, stipend : stipend, location : location, duration : duration, perks : perks, requirement : require, company_details : company_details, job_posted : job_posted, role : result, author : author};
+   var newInternship = { company_name : name, company_profile : profile, stipend : stipend, location : location, duration : duration, perks : perks, requirement : require, company_details : company_details, job_posted : job_posted, role : result, author : author, can_apply_portal : can_apply_portal, email : email, email_application_requirement : email_app_req};
    Internship.create(newInternship, function(err, newlyCreatedIntership){
       if(err){console.log(err);}
       else{
@@ -93,6 +100,7 @@ router.get("/:id", middleware.isLoggedIn, function(req, res) {
 });
 
 router.get("/:id/assessment-test", middleware.isLoggedIn, function(req, res){
+  
     if(req.user.phone == null){
         res.redirect("/profile");
     }
@@ -109,7 +117,46 @@ router.get("/:id/assessment-test", middleware.isLoggedIn, function(req, res){
         Internship.findById(req.params.id, function(err, foundInternship) {
             if(err){console.log(err);}
             else{
-            res.render("internships/assessment", {internship : foundInternship, user: req.user, applied : applied, answer : job_applied_answers});
+                if(foundInternship.can_apply_portal != 'yes'){
+                    if(applied == false){
+                        let mailOptions = {
+                            from: 'divyansh.kumar.min16@itbhu.ac.in', // sender address
+                            to: req.user.emailid, // list of receivers
+                            subject: 'Please Respond : Ecell IIT(BHU) Varanasi', // Subject line
+                            text: 'It Worked', // plain text body
+                            html: '<b>Hi ' + req.user.name +', </b> <br> <p> In order to apply for this internship ' + foundInternship.email_application_requirement + ' : '+ foundInternship.email +'</p>' // html body
+                        };
+                        transporter.sendMail(mailOptions, (error, info) => {
+                            if (error) {
+                                res.send('de')
+                            }
+                            Internship.findById(req.params.id).then((foundJob) => {
+                                Application.create({company_id : req.params.id, student_id : req.user._id, answer : [], company_name : foundJob.company_name, company_profile : foundJob.company_profile, student_name : req.user.name, student_email : req.user.emailid, student_phone : req.user.phone});
+                            })
+
+                            var f = {
+                                id : req.params.id,
+                                answer : []
+                            }
+                            var update = req.user.job_applied_company;
+                            update.push(f);
+                             User.findOneAndUpdate({googleid : req.user.googleid}, {job_applied_company : update} , function(err, updatedUser) {
+                                if(err){
+                                    res.redirect('/internships');
+                                }
+                                else{
+                                    res.render("send-email.ejs" , { user : req.user});
+                                }
+                            })
+                            });
+                    }
+                    else{
+                        res.render("send-email.ejs" , { user : req.user});
+                    }
+                }
+                else{
+                    res.render("internships/assessment", {internship : foundInternship, user: req.user, applied : applied, answer : job_applied_answers});
+                }
             }
         })
     }
@@ -158,7 +205,7 @@ router.put("/:id/job-apllication", middleware.isLoggedIn, function(req, res) {
 })
 
 router.put("/:id",middleware.checkCampgroundOwnership, function(req, res){
-    Internship.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedInternship){
+    Internship.findByIdAndUpdate(req.params.id, req.body.internship, function(err, updatedInternship){
         if(err){ 
             res.redirect('/internships');
         }
