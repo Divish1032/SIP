@@ -2,11 +2,12 @@
 var Internship = require("../models/intern-job");
 var flash = require("connect-flash");
 var middlewareObj = {};
+var key = require('../models/keys')
 
 
 middlewareObj.checkCampgroundOwnership = function(req, res, next){
      // Is user Logged in
-    if(req.user.emailid == 'divyansh.kumar.min16@itbhu.ac.in'){
+    if(req.user.emailid == key.admin.email){
         next();
         
     }else{
