@@ -11,7 +11,7 @@ module.exports = (passport) => {
             done(null, user);
         });
         
-    }); 
+    });  
     passport.use(new GoogleStrategy({
             clientID: process.env.CLIENT_ID || keys.google.clientID ,
             clientSecret: process.env.CLIENT_SECRET || keys.google.clientSecret,

@@ -50,7 +50,7 @@
     <a href="/internships/<%= internship._id %>/assessment-test" class="btn btn-outline-info">Review Application</a>
     <% } %>
 
-    <% if(currentUser && currentUser.emailid == 'divyansh.kumar.min16@itbhu.ac.in'){ %>
+    <% if(currentUser && currentUser.emailid == adminEmail){ %>
     <div class="admin-button">
         <a href="/internships/<%= internship._id %>/edit" class="btn btn-outline-info">Edit Job</a>
         <form class="deleteForm" action="/internships/<%= internship._id %>?_method=DELETE" method="POST">

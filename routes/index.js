@@ -6,6 +6,7 @@ var middleware = require("../middleware");
 const User = require('../models/student');
 var Internship = require("../models/intern-job");
 var Application = require("../models/applied-interns");
+var keys = require('../models/keys')
 
 router.get('/', (req, res) => {
         res.render("landing", {user : req.user}); 
@@ -44,7 +45,7 @@ router.get('/profile', middleware.isLoggedIn, (req,res) => {
                 console.log("++" + elem);
             })
             
-            res.render("profile", {user : req.user, job_selected : job_selected});  
+            res.render("profile", {user : req.user, job_selected : job_selected, adminEmail : keys.admin.email});  
         });
 } )
 

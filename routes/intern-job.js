@@ -4,14 +4,15 @@ const User = require('../models/student')
 var Internship = require("../models/intern-job");
 var Application = require("../models/applied-interns");
 // var middleware = require("../middleware/index");  // Inddex.js is the sort of default file
-var middleware = require("../middleware")
+var middleware = require("../middleware"),
     nodeMailer = require('nodemailer')
+var keys = require('../models/keys')
 
 let transporter = nodeMailer.createTransport({
     service: 'gmail',
     auth: {
-            user: 'ecell@itbhu.ac.in',
-            pass: 'ECELL_IITBHU#1'
+            user: process.env.EMAILID_KEY || keys.admin.email,
+            pass: process.env.EMAILID_PASS || keys.admin.password
         }
 });
 
@@ -23,7 +24,7 @@ router.get("/", middleware.isLoggedIn, function(req, res){
        else{
            console.log(Internships);
            // res.render("campgrounds/index", {campgrounds : campgrounds, currentUser : req.user});
-           res.render("internships/index", {internships : Internships, user : req.user});
+           res.render("internships/index", {internships : Internships, user : req.user, adminEmail : process.env.EMAILID_KEY ||  keys.admin.email});
        }
     });
 }); 
@@ -94,7 +95,7 @@ router.get("/:id", middleware.isLoggedIn, function(req, res) {
     /* Campground.findById(req.params.id, function(err, foundCampground){ */
        if(err){ console.log(err); }
        else{
-           res.render("internships/show", {internship : foundInternship, user: req.user, applied : applied});
+           res.render("internships/show", {internship : foundInternship, user: req.user, applied : applied, adminEmail : process.env.EMAILID_KEY || keys.admin.email});
        }
     });
 });
