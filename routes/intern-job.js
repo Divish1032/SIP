@@ -10,8 +10,8 @@ var middleware = require("../middleware")
 let transporter = nodeMailer.createTransport({
     service: 'gmail',
     auth: {
-            user: 'divyansh.kumar.min16@itbhu.ac.in',
-            pass: 'Whysoserious@1032'
+            user: 'ecell@itbhu.ac.in',
+            pass: 'ECELL_IITBHU#1'
         }
 });
 
@@ -120,7 +120,7 @@ router.get("/:id/assessment-test", middleware.isLoggedIn, function(req, res){
                 if(foundInternship.can_apply_portal != 'yes'){
                     if(applied == false){
                         let mailOptions = {
-                            from: 'divyansh.kumar.min16@itbhu.ac.in', // sender address
+                            from: 'ecell@itbhu.ac.in', // sender address
                             to: req.user.emailid, // list of receivers
                             subject: 'Please Respond : Ecell IIT(BHU) Varanasi', // Subject line
                             text: 'It Worked', // plain text body
