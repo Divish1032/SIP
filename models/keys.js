@@ -5,7 +5,7 @@ module.exports = {
         callbackURL : 'http://student-internship-portal.herokuapp.com/auth/google/callback'
     },
     admin : {
-        email : 'divyansh.kumar.min16@itbhu.ac.in',
+        email : 'ecell@itbhu.ac.in',
         mongoDB : 'mongodb://ecell:ecell007@ds215988.mlab.com:15988/student_internship_portal'
     }
 }
