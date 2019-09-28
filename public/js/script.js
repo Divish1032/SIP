@@ -23,7 +23,7 @@ $(document).ready(function() {
   $('.knoww').click(function(e) {
     e.preventDefault();
     if(window.location.pathname != "/"){
-      window.location.replace(window.location.hostname);
+      window.location.replace("/");
     }
     document.getElementById("tt").scrollIntoView(); 
   });
