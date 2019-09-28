@@ -19,12 +19,12 @@ $( "p" ).fadeIn( "slow" );
   }, false);
 })();
 
-/* $(document).ready(function() {
+$(document).ready(function() {
   $('.knoww').click(function(e) {
     e.preventDefault();
-    
-    $('html, body').animate({
-      scrollTop: $('.aboutUs').offset().top
-    }, 500);
+    if(window.location.pathname != "/"){
+      window.location.replace(window.location.hostname);
+    }
+    document.getElementById("tt").scrollIntoView(); 
   });
-}); */
+});
