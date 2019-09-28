@@ -42,7 +42,6 @@ app.use(methodOverride("_method"));
 app.use(flash());
 
 /*Models*/
-var Campground = require("./models/intern-job");
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
