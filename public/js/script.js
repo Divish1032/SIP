@@ -24,7 +24,12 @@ $(document).ready(function() {
     e.preventDefault();
     if(window.location.pathname != "/"){
       window.location.replace("/");
+      window.onload = function () { document.getElementById("tt").scrollIntoView(); }
     }
-    document.getElementById("tt").scrollIntoView(); 
+    else{
+      document.getElementById("tt").scrollIntoView(); 
+    }
+
+    
   });
 });
