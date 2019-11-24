@@ -10,7 +10,10 @@ var internshipSchema = new mongoose.Schema({
     perks : String,
     requirement : String,
     company_details : String,
-    job_posted : String,
+    job_posted : {
+        type: Date,
+        default: Date.now
+    },
     role : [{
         type: String
     }],

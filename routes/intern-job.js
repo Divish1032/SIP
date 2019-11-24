@@ -23,6 +23,12 @@ router.get("/", middleware.isLoggedIn, function(req, res){
        if(err){console.log(err);}
        else{
            console.log(Internships);
+
+           /* Internships.forEach(x => {
+               var y = x.job_posted;
+               var t = y.charAt(0) + y.charAt(1)
+               console.log
+           }); */
            // res.render("campgrounds/index", {campgrounds : campgrounds, currentUser : req.user});
            res.render("internships/index", {internships : Internships, user : req.user, adminEmail : process.env.EMAILID_KEY ||  keys.admin.email});
        }
