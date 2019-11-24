@@ -33,7 +33,7 @@ router.get("/", middleware.isLoggedIn, function(req, res){
             return 0;
           }
 
-          Internships = arr.sort( compare );
+          Internships = Internships.sort( compare );
 
            // res.render("campgrounds/index", {campgrounds : campgrounds, currentUser : req.user});
            res.render("internships/index", {internships : Internships, user : req.user, adminEmail : process.env.EMAILID_KEY ||  keys.admin.email});
