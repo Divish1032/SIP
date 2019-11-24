@@ -55,7 +55,9 @@ router.get('/auth/google/callback',
     }),
     (req, res) => {
         req.flash("success","Successfully logged you in");
-        res.redirect('/internships');
+        res.redirect(req.session.returnTo || '/internships');
+        delete req.session.returnTo;
+        
     }
 );
 

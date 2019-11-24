@@ -25,6 +25,7 @@ middlewareObj.isLoggedIn = function (req, res, next){
     req.flash("error", "Please Login First!");  //  This should be present before the redirection. Else won't work
     // Pass this object { message : req.flash("success") } to res redirect.        
     // This would be displayed in the next page 
+    req.session.returnTo = req.originalUrl; 
     res.redirect("/login");
 }
 
