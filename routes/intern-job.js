@@ -24,7 +24,7 @@ router.get("/", middleware.isLoggedIn, function(req, res){
        else{
            console.log(Internships);
 
-           Internships.sort(function(a,b){
+           Internships = Internships.sort(function(a,b){
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
             return new Date(a.date) - new Date(b.date);
