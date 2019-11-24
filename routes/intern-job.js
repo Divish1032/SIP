@@ -27,7 +27,7 @@ router.get("/", middleware.isLoggedIn, function(req, res){
            Internships.sort(function(a,b){
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
-            return new Date(b.date.toDateString()) - new Date(a.date.toDateString());
+            return new Date(a.date) - new Date(b.date);
             });
 
            // res.render("campgrounds/index", {campgrounds : campgrounds, currentUser : req.user});
