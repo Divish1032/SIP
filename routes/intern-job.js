@@ -22,13 +22,18 @@ router.get("/", middleware.isLoggedIn, function(req, res){
     Internship.find({},function(err, Internships){
        if(err){console.log(err);}
        else{
-           console.log(Internships);
 
-           Internships = Internships.sort(function(a,b){
-            // Turn your strings into dates, and then subtract them
-            // to get a value that is either negative, positive, or zero.
-            return new Date(b.date) - new Date(a.date);
-            });
+           function compare( a, b ) {
+            if ( a.job_posted < b.job_posted ){
+              return 1;
+            }
+            if ( a.job_posted > b.job_posted ){
+              return -1;
+            }
+            return 0;
+          }
+
+          Internships = arr.sort( compare );
 
            // res.render("campgrounds/index", {campgrounds : campgrounds, currentUser : req.user});
            res.render("internships/index", {internships : Internships, user : req.user, adminEmail : process.env.EMAILID_KEY ||  keys.admin.email});
