@@ -24,11 +24,12 @@ router.get("/", middleware.isLoggedIn, function(req, res){
        else{
            console.log(Internships);
 
-           /* Internships.forEach(x => {
-               var y = x.job_posted;
-               var t = y.charAt(0) + y.charAt(1)
-               console.log
-           }); */
+           Internships.sort(function(a,b){
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return new Date(b.date) - new Date(a.date);
+            });
+
            // res.render("campgrounds/index", {campgrounds : campgrounds, currentUser : req.user});
            res.render("internships/index", {internships : Internships, user : req.user, adminEmail : process.env.EMAILID_KEY ||  keys.admin.email});
        }
