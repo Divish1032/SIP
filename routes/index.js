@@ -110,6 +110,7 @@ function groupBy1(key, array) {
         entry.items.push(array[i]);
         result.push(entry);
       }
+      
     }
     return result;
   }
