@@ -17,7 +17,7 @@ let transporter = nodeMailer.createTransport({
 
 
 // All Intern Page 
-router.get("/", middleware.isLoggedIn, function(req, res){
+router.get("/", function(req, res){
     Internship.find({},function(err, Internships){
        if(err){console.log(err);}
        else{
