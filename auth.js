@@ -25,13 +25,16 @@ module.exports = (passport) => {
                 }
                 else{
                     new User ({
-                        name : profile.name.givenName,
+                        username : profile.name.givenName,
                         googleid : profile.id,
-                        emailid : profile._json.email,
-                        branch : profile.name.familyName,
+                        email : profile._json.email,
+                        branch : null,
+                        college : null,
+                        city : null,
+                        year : null,
                         phone : null,
                         profile : profile._json.picture,
-                        job_applied : []
+                        resume_link : null
                     }).save().then((newUser) => {
                         console.log('new user cerated' + newUser);
                         done(null, newUser);

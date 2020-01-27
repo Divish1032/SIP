@@ -5,9 +5,9 @@ var middlewareObj = {};
 var key = require('../models/keys')
 
 
-middlewareObj.checkCampgroundOwnership = function(req, res, next){
+middlewareObj.checkInternshipOwnership = function(req, res, next){
      // Is user Logged in
-    if(req.user.emailid == key.admin.email){
+    if(req.user.email == key.admin.email){
         next();
         
     }else{

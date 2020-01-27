@@ -1,521 +1,521 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     
-        <!-- Custom CSS-->
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-        
-        <script
-                    src="https://code.jquery.com/jquery-3.4.1.min.js"
-                    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
-        <script src="js/script.js"></script>
-        <title>SIP (Startup Internship Portal)</title>
-        <link rel="icon" type="image/x-icon" href="https://i.ibb.co/LvGSXd2/logo.png" >
-        <style>
-            @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap');
-            @import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
-            body {
-                font-family: 'Lora', serif;
-            }
+    <script
+                src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+    <title>SIP (Startup Internship Portal)</title>
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/LvGSXd2/logo.png" >
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
+        body {
+            font-family: 'Lora', serif;
+        }
 
-            #home {
-                text-align:center;
-                color:rgb(250, 130, 49);
-                font-weight:300;
-                font-size:54px;
-                padding-top:40vh;
-                height:100vh;
-                overflow:hidden;
-                -webkit-backface-visibility: hidden;
-                -webkit-perspective: 1000;
-                -webkit-transform: translate3d(0,0,0);
-            }
-
-            #home span {
+        #home {
+            text-align:center;
+            color:rgb(250, 130, 49);
+            font-weight:300;
+            font-size:54px;
+            padding-top:40vh;
+            height:100vh;
             overflow:hidden;
-            white-space:nowrap;
-            }
+            -webkit-backface-visibility: hidden;
+            -webkit-perspective: 1000;
+            -webkit-transform: translate3d(0,0,0);
+        }
 
-            .nav-button {
-                position: absolute;
-                right: 0;
-            }
-            .nav-button li {
-                display: inline;
-            }
+        #home span {
+        overflow:hidden;
+        white-space:nowrap;
+        }
 
-            .btn {
-                color: rgb(250, 130, 49);
-                border-color: rgb(250, 130, 49);
-            }
-            .bg-dark {
-                border-bottom: solid 2px rgb(250, 130, 49);;
-                background-color: #17191c !important;
-                padding: 0;
-            }
+        .nav-button {
+            position: absolute;
+            right: 0;
+        }
+        .nav-button li {
+            display: inline;
+        }
 
-            .home-page {
-                background-color: #17191c;
-                background-image: url("../images/dark-wood.png");
-            }
+        .btn {
+            color: rgb(250, 130, 49);
+            border-color: rgb(250, 130, 49);
+        }
+        .bg-dark {
+            border-bottom: solid 2px rgb(250, 130, 49);;
+            background-color: #17191c !important;
+            padding: 0;
+        }
 
+        .home-page {
+            background-color: #17191c;
+            background-image: url("../images/dark-wood.png");
+        }
+
+        .line {
+            position: relative;
+            top: 30%;
+            width: 16em;
+            margin: 0 auto;
+            padding-top: 274px;
+            border-right: 2px solid rgba(255, 255, 255, 0.75);
+            font-size: 50px;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            white-space: nowrap;
+            overflow: hidden;
+            transform: translateY(-50%);
+        }
+
+
+        .anim-typewriter {
+            animation: typewriter 1.5s steps(100) 1s 1 normal both,
+            blinkTextCursor 500ms steps(100) infinite normal;
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 460px;
+            }
+        }
+
+        @keyframes blinkTextCursor {
+            from {
+                border-right-color: rgba(36, 34, 34, 0.75);
+            }
+            to {
+                border-right-color: transparent;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .college {
+                font-size: 22px!important;
+                top: -150px!important;
+            }
             .line {
-                position: relative;
-                top: 30%;
-                width: 16em;
-                margin: 0 auto;
-                padding-top: 274px;
-                border-right: 2px solid rgba(255, 255, 255, 0.75);
-                font-size: 50px;
-                text-align: center;
-                color: rgb(255, 255, 255);
-                white-space: nowrap;
-                overflow: hidden;
-                transform: translateY(-50%);
+                font-size: 26px;
+                width: 260px;
             }
-
-
-            .anim-typewriter {
-                animation: typewriter 1.5s steps(100) 1s 1 normal both,
-                blinkTextCursor 500ms steps(100) infinite normal;
+            .knowMore{
+                padding: 12px 18px!important;
+                font-size: 15px!important;
             }
-
+            #anchor{
+                font-size: 35px!important;
+            }
+            .aboutUs h1{
+                font-size: 34px!important;
+            }
+            .aboutUs p{
+                font-size: 14px!important;
+            }
+            .aboutUs{
+                width: 85%!important;
+            }
             @keyframes typewriter {
                 from {
                     width: 0;
                 }
                 to {
-                    width: 460px;
-                }
-            }
-
-            @keyframes blinkTextCursor {
-                from {
-                    border-right-color: rgba(36, 34, 34, 0.75);
-                }
-                to {
-                    border-right-color: transparent;
-                }
-            }
-
-            @media (max-width: 500px) {
-                .college {
-                    font-size: 22px!important;
-                    top: -150px!important;
-                }
-                .line {
-                    font-size: 26px;
                     width: 260px;
                 }
-                .knowMore{
-                    padding: 12px 18px!important;
-                    font-size: 15px!important;
-                }
-                #anchor{
-                    font-size: 35px!important;
-                }
-                .aboutUs h1{
-                    font-size: 34px!important;
-                }
-                .aboutUs p{
-                    font-size: 14px!important;
-                }
-                .aboutUs{
-                    width: 85%!important;
-                }
-                @keyframes typewriter {
-                    from {
-                        width: 0;
-                    }
-                    to {
-                        width: 260px;
-                    }
-                }
             }
+        }
 
-            .college {
-                color: white;
-            font-size: 35px;
+        .college {
+            color: white;
+        font-size: 35px;
+        position: relative;
+        top: -180px;
+        text-align: center;
+        }
+
+        .knowMore {
+            padding: 12px 37px;
+            font-size: 20px;
+            color: rgb(250, 130, 49);
+            border-color: rgb(250, 130, 49);
             position: relative;
-            top: -180px;
+            top: -110px;
+        }
+
+
+        .anchor {
+            float: right;
+        margin-right: 20px;
+        font-size: 50px!important;
+        color: #fa8231;
+        }
+        .job-portal h2 {
             text-align: center;
-            }
+        margin: 60px auto;
+        text-decoration: underline;
+        }
 
-            .knowMore {
-                padding: 12px 37px;
-                font-size: 20px;
-                color: rgb(250, 130, 49);
-                border-color: rgb(250, 130, 49);
-                position: relative;
-                top: -110px;
-            }
+        .jobs {
+            margin: 20px auto;
+            width: 75%;
+        }
 
-
-            .anchor {
-                float: right;
-            margin-right: 20px;
-            font-size: 50px!important;
-            color: #fa8231;
-            }
-            .job-portal h2 {
-                text-align: center;
+        .intern-header {
             margin: 60px auto;
+            text-align: center;
+
+        }
+
+        .jobs small {
+            font-size: 13px;
+        }
+        .jobs h5 {
+            margin: 0;
+        }
+        .field {
+            margin-top: 15px;
+        }
+        .jobs .btn {
+            float: right;
+        }
+        .all-jobs {
+            margin : 20px 0;
+            float: right;
+            width: max-content;
+        }
+        
+        .aboutUs {
+            margin-top: 100px;
+            text-align: center;
+            width: 70%;
+        }
+        .aboutUs h1{
+            font-size: 40px;
             text-decoration: underline;
-            }
+        }
+        .aboutUs p {
+            margin-top: 35px;
+            font-size: 21px;
+            color: #000000b5;
+        }
 
-            .jobs {
-                margin: 20px auto;
-                width: 75%;
-            }
+        hr {
+            margin-top: 38px;
+            background-color: #fa8231;
+            border-color: #fa8231;
+        }
+        .footer {
+            margin-top: 80px;
+            text-align: center;
+            font-size: 13px;
+            background-color: #17191c;
+            color: white;
+        }
+        .footer p {
+            padding: 15px;
+            margin: 0;
+        }
+        .footer .row a, .footer .row p {
+            padding: 4px;
+            font-size: 15px;
+            color: #ffffff94;
+        }
+        .footer .row h5 {
+            margin: 18px auto;
+        text-align: center;
+        text-decoration: underline;
+        }
+        .footer hr {
+            margin-top: 32px;
+            width: 68%;
+        }
 
-            .intern-header {
-                margin: 60px auto;
-                text-align: center;
+        .internship-detail {
+            width: 75%;
+        }
+        .internship-detail h2{
+            text-align: center;
+            text-decoration: underline;
+            margin-top: 70px;
+        }
+        .internship-detail h5{
+            margin-top: 38px;
+        }
+        .internship-detail p, .internship-detail li {
+            color: #000000ba;
+        }
+        .internship-detail a {
+            margin-top: 40px;
+            width: max-content;
+            padding: 10px 30px;
+        }
+        .footer-row {
+            width: 100%;
+        }
 
-            }
+        .assessment {
+            width: 60%;
+        }
+        .assessment h2 {
+            text-align: center;
+            margin-top: 56px;
+            text-decoration: underline;
+        }
+        .assessment label{
+            margin: 0;
+            font-size: 20px;
+            margin-top: 23px;
+        }
+        .assessment small{
+            display: block;
+            margin-bottom: 15px;
+            color: #0000009e;
+        }
+        .assessment .form-group{
+            margin-bottom: 30px;
+        }
+        .assessment button{
+            margin-top: 30px;
+        }
+        .assessment textarea{
+            font-size: 15px;
+        }
+        .assessment p{
+            text-align: right;
+            margin-top: 22px;
+        }
+        .assessment span{
+            color: #fa8231;
+        }
 
-            .jobs small {
-                font-size: 13px;
-            }
-            .jobs h5 {
-                margin: 0;
-            }
-            .field {
-                margin-top: 15px;
-            }
-            .jobs .btn {
-                float: right;
-            }
-            .all-jobs {
-                margin : 20px 0;
-                float: right;
-                width: max-content;
-            }
+        .post-job{
+            width: 50%;
+        }
+        .post-job h5{
+            font-size: 27px;
+            text-align: center;
+            margin: 37px 0;
+            text-decoration: underline;
+        }
+        .post-job #more_fields{
+            margin-top: 20px;
+        }
+        .post-job .post-job-submit{
+            margin-top: 50px;
+        }
+
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+        
+        .g-sign-in-button {
+            margin: 10px;
+            margin: 50px auto;
+            display: inline-block;
+            width: 240px;
+            height: 50px;
+            background-color: #4285f4;
+            color: #fff;
+            border-radius: 1px;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+            transition: background-color .218s, border-color .218s, box-shadow .218s;
+        }
+        
+        .g-sign-in-button:hover {
+            cursor: pointer;
+            -webkit-box-shadow: 0 0 3px 3px rgba(66, 133, 244, 0.3);
+            box-shadow: 0 0 3px 3px rgba(66, 133, 244, 0.3);
+        }
+        
+        .g-sign-in-button:active {
+            background-color: #3367D6;
+            transition: background-color 0.2s;
+        }
+        
+        .g-sign-in-button .content-wrapper {
+            height: 100%;
+            width: 100%;
+            border: 1px solid transparent;
+        }
+        
+        .g-sign-in-button img {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .g-sign-in-button .logo-wrapper {
+            padding: 15px;
+            background: #fff;
+            width: 48px;
+            height: 100%;
+            border-radius: 1px;
+            display: inline-block;
+        }
+        
+        .g-sign-in-button .text-container {
+            font-family: Roboto,arial,sans-serif;
+            font-weight: 500;
+            letter-spacing: .21px;
+            font-size: 16px;
+            line-height: 48px;
+            vertical-align: top;
+            border: none;
+            display: inline-block;
+            text-align: center;
+            width: 180px;
+        }
+
+        .login h2{
+            text-align: center;
+            margin-top: 55px;
+            text-decoration: underline;
+            margin-bottom: 34px;
+        }
+        .login p{
+            text-align: center;
+        }
+
+        .prof{
+            color: #808c8e;
+            cursor: pointer;
             
-            .aboutUs {
-                margin-top: 100px;
-                text-align: center;
+        }
+        .prof i {
+            margin-left: 4px;
+            font-size: 15px;
+            
+        }
+        .prof:hover{
+            color: rgba(255,255,255,.75);
+        }
+
+        .profile{
+            text-align: center;
+        }
+        .profile img{
+            width: 119px;
+            border-radius: 50%;
+            margin-bottom: 40px;
+        }
+        .profile h2{
+            margin: 50px 0;
+            text-decoration: underline;
+        }
+        .profile .row{
+            width: 65%;
+            margin: 20px auto;
+            font-size: 20px;
+        }
+        .profile .col-sm-3{
+            color: #fa8231;
+            text-decoration: underline;
+        }
+        
+
+        @media (max-width: 800px ) and (min-width : 401px) {
+            .profile .row{
                 width: 70%;
             }
-            .aboutUs h1{
-                font-size: 40px;
-                text-decoration: underline;
-            }
-            .aboutUs p {
-                margin-top: 35px;
-                font-size: 21px;
-                color: #000000b5;
-            }
-
-            hr {
-                margin-top: 38px;
-                background-color: #fa8231;
-                border-color: #fa8231;
-            }
-            .footer {
-                margin-top: 80px;
-                text-align: center;
-                font-size: 13px;
-                background-color: #17191c;
-                color: white;
-            }
-            .footer p {
-                padding: 15px;
-                margin: 0;
-            }
-            .footer .row a, .footer .row p {
-                padding: 4px;
-                font-size: 15px;
-                color: #ffffff94;
-            }
-            .footer .row h5 {
-                margin: 18px auto;
-            text-align: center;
-            text-decoration: underline;
-            }
-            .footer hr {
-                margin-top: 32px;
-                width: 68%;
-            }
-
-            .internship-detail {
-                width: 75%;
-            }
-            .internship-detail h2{
-                text-align: center;
-                text-decoration: underline;
-                margin-top: 70px;
-            }
-            .internship-detail h5{
-                margin-top: 38px;
-            }
-            .internship-detail p, .internship-detail li {
-                color: #000000ba;
-            }
-            .internship-detail a {
-                margin-top: 40px;
-                width: max-content;
-                padding: 10px 30px;
-            }
-            .footer-row {
-                width: 100%;
-            }
-
-            .assessment {
-                width: 60%;
-            }
-            .assessment h2 {
-                text-align: center;
-                margin-top: 56px;
-                text-decoration: underline;
-            }
-            .assessment label{
-                margin: 0;
-                font-size: 20px;
-                margin-top: 23px;
-            }
-            .assessment small{
-                display: block;
-                margin-bottom: 15px;
-                color: #0000009e;
-            }
-            .assessment .form-group{
-                margin-bottom: 30px;
-            }
-            .assessment button{
-                margin-top: 30px;
-            }
-            .assessment textarea{
-                font-size: 15px;
-            }
-            .assessment p{
-                text-align: right;
-                margin-top: 22px;
-            }
-            .assessment span{
-                color: #fa8231;
-            }
-
-            .post-job{
-                width: 50%;
-            }
-            .post-job h5{
-                font-size: 27px;
-                text-align: center;
-                margin: 37px 0;
-                text-decoration: underline;
-            }
-            .post-job #more_fields{
-                margin-top: 20px;
-            }
-            .post-job .post-job-submit{
-                margin-top: 50px;
-            }
-
-            *, *:before, *:after {
-                box-sizing: border-box;
-            }
-            
-            .g-sign-in-button {
-                margin: 10px;
-                margin: 50px auto;
-                display: inline-block;
-                width: 240px;
-                height: 50px;
-                background-color: #4285f4;
-                color: #fff;
-                border-radius: 1px;
-                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
-                transition: background-color .218s, border-color .218s, box-shadow .218s;
-            }
-            
-            .g-sign-in-button:hover {
-                cursor: pointer;
-                -webkit-box-shadow: 0 0 3px 3px rgba(66, 133, 244, 0.3);
-                box-shadow: 0 0 3px 3px rgba(66, 133, 244, 0.3);
-            }
-            
-            .g-sign-in-button:active {
-                background-color: #3367D6;
-                transition: background-color 0.2s;
-            }
-            
-            .g-sign-in-button .content-wrapper {
-                height: 100%;
-                width: 100%;
-                border: 1px solid transparent;
-            }
-            
-            .g-sign-in-button img {
-                width: 18px;
-                height: 18px;
-            }
-            
-            .g-sign-in-button .logo-wrapper {
-                padding: 15px;
-                background: #fff;
-                width: 48px;
-                height: 100%;
-                border-radius: 1px;
-                display: inline-block;
-            }
-            
-            .g-sign-in-button .text-container {
-                font-family: Roboto,arial,sans-serif;
-                font-weight: 500;
-                letter-spacing: .21px;
-                font-size: 16px;
-                line-height: 48px;
-                vertical-align: top;
-                border: none;
-                display: inline-block;
-                text-align: center;
-                width: 180px;
-            }
-
-            .login h2{
-                text-align: center;
-                margin-top: 55px;
-                text-decoration: underline;
-                margin-bottom: 34px;
-            }
-            .login p{
-                text-align: center;
-            }
-
-            .prof{
-                color: #808c8e;
-                cursor: pointer;
-                
-            }
-            .prof i {
-                margin-left: 4px;
-                font-size: 15px;
-                
-            }
-            .prof:hover{
-                color: rgba(255,255,255,.75);
-            }
-
-            .profile{
-                text-align: center;
-            }
-            .profile img{
-                width: 119px;
-                border-radius: 50%;
-                margin-bottom: 40px;
-            }
-            .profile h2{
-                margin: 50px 0;
-                text-decoration: underline;
-            }
-            .profile .row{
-                width: 50%;
-                margin: 20px auto;
-                font-size: 20px;
-            }
-            .profile .col-sm-3{
-                color: #fa8231;
-                text-decoration: underline;
-            }
-            
-
-            @media (max-width: 800px ) and (min-width : 401px) {
-                .profile .row{
-                    width: 70%;
-                }
-            }
-            @media (max-width: 400px) {
-                .assessment{
-                    width: 76%;
-                        }
-                .profile .row{
-                    width: 100%;
-                    font-size: 15px;
-                }
-            }
-
-            .profile .phone-number{
-                width: 60%;
-                display: inline;
-            }
-
-            .new-job{
-                position: relative;
-                left: 13%;
-            }
-            .applied-intern h5{
-                margin-top: 57px;
-            text-decoration: underline;
-            text-align: center;
-            }
-            .applied-intern .header {
-                text-align: center;
-                margin-top: 32px;
-                font-size: 18px;
-            }
-
-            .applied-intern .header .col-sm-3 {
-                border: 1px solid #0202021f;
-            }
-
-            .admin-button button{
-                padding: 10px 36px;
-                display: inline;
-                margin-top: 41px;
-            }
-            .admin-button form{
-                display: inline;
-            }
-            .job-applied{
-                margin-top: 20px;
-                 text-align: center;
-            }
-            .flash{
-                z-index: 1;
-                position: absolute;
-                left: 25%;
-                margin: 20px auto;
-                padding: 0;
-                width: 50%;
-                opacity: 1;
-            }
-        </style>
-        <script>
-            $( "p" ).fadeIn( "slow" );
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
+        }
+        @media (max-width: 400px) {
+            .assessment{
+                width: 76%;
                     }
-                    form.classList.add('was-validated');
-                }, false);
-                });
+            .profile .row{
+                width: 100%;
+                font-size: 15px;
+            }
+        }
+
+        .profile .phone-number{
+            width: 60%;
+            display: inline;
+        }
+
+        .new-job{
+            position: relative;
+            left: 13%;
+        }
+        .applied-intern h5{
+            margin-top: 57px;
+        text-decoration: underline;
+        text-align: center;
+        }
+        .applied-intern .header {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 18px;
+        }
+
+        .applied-intern .header .col-sm-3 {
+            border: 1px solid #0202021f;
+        }
+
+        .admin-button button{
+            padding: 10px 36px;
+            display: inline;
+            margin-top: 41px;
+        }
+        .admin-button form{
+            display: inline;
+        }
+        .job-applied{
+            margin-top: 20px;
+                text-align: center;
+        }
+        .flash{
+            z-index: 1;
+            position: absolute;
+            left: 25%;
+            margin: 20px auto;
+            padding: 0;
+            width: 50%;
+            opacity: 1;
+        }
+    </style>
+    <script>
+        $( "p" ).fadeIn( "slow" );
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+                }
+                form.classList.add('was-validated');
             }, false);
-            })();
-            setTimeout(function(){$('.flash').remove();}, 5000);
-           
-            $('.navbar-nav li').click(function(){
-                alert();
-                $('.active').removeClass('active');
-                $(this).addClass('active');
-            }); 
-        </script>
+            });
+        }, false);
+        })();
+        setTimeout(function(){$('.flash').remove();}, 5000);
+        
+        $('.navbar-nav li').click(function(){
+            alert();
+            $('.active').removeClass('active');
+            $(this).addClass('active');
+        }); 
+    </script>
 </head>
 <body>
     
@@ -542,7 +542,7 @@
             <% if(!user) { %>
             <a class="nav-link" href="/login"><button type="button" class="btn btn-outline-info">Login</button></a>
             <% } else{ %>
-            <a class="prof" href="/profile" style="margin-top: 14px;"><%= user.name %> <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            <a class="prof" href="/profile" style="margin-top: 14px;"><%= user.username %> <i class="fa fa-arrow-down" aria-hidden="true"></i>
             </a>
             <a class="nav-link" href="/logout"><button type="button" class="btn btn-outline-info">LogOut</button></a>
             <% } %>

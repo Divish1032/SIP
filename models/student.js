@@ -3,18 +3,29 @@ var passportLocalMongoose = require("passport-local-mongoose");
 
 /* Create Schema, then a model which gives you all the methods */
 var studentSchema = new mongoose.Schema({
-    name : String,
-    googleid : String,
-    emailid : String,
-    branch : String,
-    phone : String,
-    profile : String,
-    job_applied_company : [{
-        id : String,
-        answer : [{
-            type: String
-        }]
-    }] 
+    username : { 
+        type :String,
+        require: true,
+    },
+    googleid : { 
+        type :String,
+        require: true
+    },
+    email : { 
+        type :String,
+        require: true, 
+        index:true, 
+        unique:true,
+        sparse:true 
+    },
+    branch : { type: String },
+    college : { type: String },
+    city : { type: String },
+    year : { type: String },
+    phone : { type: String },
+    profile : { type: String },
+    resume_link : { type: String }
+    
 });
 
 studentSchema.plugin(passportLocalMongoose);

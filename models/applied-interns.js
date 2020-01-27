@@ -8,10 +8,12 @@ var appliedInternSchema = new mongoose.Schema({
     student_name : String, 
     student_email : String,
     student_phone : String,
-    student_id : String,
+    student_college : String,
+    student_branch : String,
     answer : [{
         type : String
-    }]
+    }],
+    resume : String
 });
 
 var appliedIntern = mongoose.model("applications",appliedInternSchema);

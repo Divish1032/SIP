@@ -1,33 +1,68 @@
 <% include ./partials/header2 %>
 
 <div class="container profile">
-    <% if(user.phone == null){ %>
+    <!-- <% if(user.phone == null){ %>
     <p style="font-size: 16px; margin-top: 11px; color: red; text-decoration: underline;">Please enter the phone number!</p>
-    <% } %>
+    <% } %> -->
     <h2>Profile</h2>
     <img src="<%= user.profile%>" alt="">
     <div class="row">
-        <div class="col-sm-3 col-12">Name: </div>
-        <div class="col-sm-9 col-12"><%= user.name %></div>
+        <div class="col-sm-4 col-12">Name: </div>
+        <div class="col-sm-8 col-12"><%= user.username %></div>
     </div>
     <div class="row">
-        <div class="col-sm-3 col-12">Email Id: </div>
-        <div class="col-sm-9 col-12"><%= user.emailid %></div>
+        <div class="col-sm-4 col-12">Email Id: </div>
+        <div class="col-sm-8 col-12"><%= user.email %></div>
     </div>
-    <div class="row">
-        <div class="col-sm-3 col-12">Branch: </div>
-        <div class="col-sm-9 col-12"><%= user.branch %></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3 col-12">Phone: </div>
-        <div class="col-sm-9 col-12">
-            <form method="POST" action="/profile/<%= user._id %>?_method=PUT">
-                <input type="text" class="form-control phone-number" name="user[phone]" value="<%= user.phone %>" >
-                <button type="submit" class="btn btn-outline-dark">Update</button>
-            </form>
-            
+    
+    <form method="POST" action="/profile/<%= user._id %>?_method=PUT">
+        <div class="row">
+            <div class="col-sm-4 col-12">Branch: </div>
+            <% if(user.branch != null && user.branch != ""){ %>
+            <div class="col-sm-8 col-12"><%= user.branch %></div>
+            <% }else{ %>
+            <div class="col-sm-8 col-12">
+                <input type="text" class="form-control phone-number" name="user[branch]" value="<%= user.branch %>" >
+            </div>
+            <% } %>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-sm-4 col-12">College: </div>
+            <% if(user.college != null && user.college != ""){ %>
+            <div class="col-sm-8 col-12"><%= user.college %></div>
+            <% }else{ %>
+            <div class="col-sm-8 col-12">
+                <input type="text" class="form-control phone-number" name="user[college]" value="<%= user.college %>" >
+            </div>
+            <% } %>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-12">City: </div>
+            <div class="col-sm-8 col-12">
+                <input type="text" class="form-control phone-number" name="user[city]" value="<%= user.city %>" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-12">Phone: </div>
+            <div class="col-sm-8 col-12">
+                <input type="text" class="form-control phone-number" name="user[phone]" value="<%= user.phone %>" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-12">Year: </div>
+            <div class="col-sm-8 col-12">
+                <input type="text" class="form-control phone-number" name="user[year]" value="<%= user.year %>" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-12">Resume Link(Google Drive): </div>
+            <div class="col-sm-8 col-12">
+                <input type="text" class="form-control phone-number" name="user[resume_link]" value="<%= user.resume_link %>" >
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-outline-dark">Update</button>
+    </form>
 </div>
 <div class="container applied-intern">
     <h5>Applied Internships:</h5>
@@ -39,17 +74,13 @@
     </div>
     <% job_selected.forEach(function(internship){ %>
     <div class="row job-applied">
-        <div class="col-sm-3 col-12"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> <a href="/internships/<%= internship._id %>"> <%= internship.company_name %></a></div>
+        <div class="col-sm-3 col-12"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> <a href="/internships/<%= internship.company_id %>"> <%= internship.company_name %></a></div>
         <div class="col-sm-3 col-12"><%= internship.company_profile %></div>
         <div class="col-sm-3 col-12"><%= internship.stipend %></div>
-        <div class="col-sm-3 col-12"> <a href="/internships/<%= internship._id %>/assessment-test">Review Application</a> </div>
+        <div class="col-sm-3 col-12"> <a href="/internships/<%= internship.company_id %>/assessment-test">Review Application</a> </div>
     </div>
     <% }); %>
 </div>
-
-<% if(currentUser && currentUser.emailid == adminEmail){ %>
-<a class="btn btn-outline-dark" href="/list-jobs" style="text-align: center; margin-top: 20px">All Applied Jobs</a>
-<% } %>
 
 <script>
     $('.navbar-nav li').removeClass('active');

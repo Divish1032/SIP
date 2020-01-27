@@ -50,9 +50,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine","ejs");
 
 app.use(function(req, res , next){
-    res.locals.currentUser = req.user;   // user = {username : xxxx,  _id : xxxx} // User would be available for all routes
+    res.locals.currentUser = req.user;   
     res.locals.error = req.flash("error");  
-    res.locals.success = req.flash("success");  // Both of these variables would be empty most of the times
+    res.locals.success = req.flash("success"); 
     next();
  });
 
@@ -62,16 +62,9 @@ mongoose.connect(process.env.DATABASE_URL || keys.admin.mongoDB);
 // 'mongodb://ecell:ecell007@ds215988.mlab.com:15988/student_internship_portal'
 
 
-
-/* This would work without any params merge issues =>  where the routes use req.params.id */
-
-// app.use(indexRoutes);
-// app.use(campgroundRoutes);      //  router.get("/campgrounds",....
-// app.use(commentRoutes);
-
 /* Routes */
 app.use("/",indexRoutes);
-app.use("/internships",internshipRoutes);       // router.get("/"......
+app.use("/internships",internshipRoutes);      
 
 const PORT = process.env.PORT || 8000;
 
