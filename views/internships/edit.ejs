@@ -54,7 +54,7 @@
         </div>
         <div class="form-group">
             <label for="company-detail">Company Details</label>
-            <textarea class="form-control" id="company-detail" name="internship[company_details]" rows="50" required><%= viewHelper.replaceNewline(internship.company_details) %></textarea>
+            <textarea class="form-control" id="company-detail" name="internship[company_details]" rows="50" required><%= replaceNewline(internship.company_details) %></textarea>
             <div class="invalid-feedback">
                 Please provide a description of the company.
             </div>
