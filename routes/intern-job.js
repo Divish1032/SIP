@@ -49,7 +49,7 @@ router.get("/new",middleware.checkInternshipOwnership, function(req, res) {
 // Post Internship
 router.post("/",middleware.checkInternshipOwnership, function(req, res) {
    var name = req.body.company_name;
-   var logo_url = reqbody.logo_url;
+   var logo_url = req.body.logo_url;
    var profile = req.body.intern_profile;
    var stipend = req.body.stipend;
    var location = req.body.location;
