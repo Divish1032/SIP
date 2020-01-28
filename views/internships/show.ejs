@@ -7,7 +7,7 @@
     <span style="background: #fa8231;color: white;padding: 10px 20px;float: right;">Applied</span>
     <% } %>
     <h5 style="margin-top: 60px;">About <%= internship.company_name %> :</h5>
-    <p><%= internship.company_details %></p>
+    <p id ="test"><%= internship.company_details %></p>
     <div class="row">
         <div class="col-sm-6 col-12">
             <h5>Internship Profile :</h5>
@@ -60,6 +60,8 @@
     <% } %>
 </div>
 
-
+<script>
+    $("#test").val(replace($("#test").val(), "<br>", "&#10;")));
+</script>
 
 <% include ../partials/footer2 %>
