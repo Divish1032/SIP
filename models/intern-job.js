@@ -3,6 +3,7 @@ var mongoose = require("mongoose");
 /* Create Schema, then a model which gives you all the methods */
 var internshipSchema = new mongoose.Schema({
     company_name : String,
+    logo_url : String,
     company_profile : String,
     stipend : String,
     location : String,

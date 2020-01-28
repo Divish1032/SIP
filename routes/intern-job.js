@@ -49,6 +49,7 @@ router.get("/new",middleware.checkInternshipOwnership, function(req, res) {
 // Post Internship
 router.post("/",middleware.checkInternshipOwnership, function(req, res) {
    var name = req.body.company_name;
+   var logo_url = reqbody.logo_url;
    var profile = req.body.intern_profile;
    var stipend = req.body.stipend;
    var location = req.body.location;
@@ -73,7 +74,7 @@ router.post("/",middleware.checkInternshipOwnership, function(req, res) {
        }
    }
    result[j] = str;
-   var newInternship = { company_name : name, company_profile : profile, stipend : stipend, location : location, duration : duration, perks : perks, requirement : require, company_details : company_details, job_posted : job_posted, role : result, email : email};
+   var newInternship = { company_name : name, logo_url : logo_url, company_profile : profile, stipend : stipend, location : location, duration : duration, perks : perks, requirement : require, company_details : company_details, job_posted : job_posted, role : result, email : email};
    Internship.create(newInternship, function(err, newlyCreatedIntership){
       if(err){console.log(err);}
       else{
