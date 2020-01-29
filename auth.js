@@ -16,7 +16,7 @@ module.exports = (passport) => {
         });
         
     });  
-    passport.use(new GoogleStrategy({
+ /*    passport.use(new GoogleStrategy({
             clientID: process.env.CLIENT_ID || keys.google.clientID ,
             clientSecret: process.env.CLIENT_SECRET || keys.google.clientSecret,
             callbackURL: process.env.CALLBACK_URL || keys.google.callbackURL
@@ -64,7 +64,7 @@ module.exports = (passport) => {
                 }
             });
         })
-    );
+    ); */
 
     passport.use(
         new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
@@ -86,7 +86,7 @@ module.exports = (passport) => {
                                 if (err){console.log(err)};
                                 if (isMatch) {
                                     if(currentUser){
-                                        return done(null, currentUser);
+                                        return done(null, currentUser, { message: 'You are logged in.' });
                                     }
                                     else{
                                         bcrypt.genSalt(10, (err, salt) => {
@@ -106,7 +106,7 @@ module.exports = (passport) => {
                                                 profile : null,
                                                 resume_link : null
                                                 }).save().then((newUser) => {
-                                                    console.log('new user cerated' + newUser);
+                                                    console.log('new user cerated' + newUser, { message: 'You are logged in.' });
                                                     done(null, newUser);
                                                 });
                                             });
