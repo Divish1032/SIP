@@ -432,13 +432,20 @@
                 width: 70%;
             }
         }
-        @media (max-width: 400px) {
+        @media (max-width: 500px) {
             .assessment{
                 width: 76%;
                     }
             .profile .row{
                 width: 100%;
                 font-size: 15px;
+            }
+            .ty2, .ty3, .ty1{
+                position: initial!important;
+                right: unset!important;
+            }
+            .flash{
+                width: 90%!important;
             }
         }
 
@@ -480,12 +487,19 @@
         }
         .flash{
             z-index: 1;
-            position: absolute;
-            left: 25%;
+            width: 50%;
             margin: 20px auto;
             padding: 0;
             width: 50%;
             opacity: 1;
+        }
+        .ty2{
+            position: absolute;
+            right: 150px;
+        }
+        .ty3, .ty1{
+            position: absolute;
+            right: 50px;
         }
     </style>
     <script>
@@ -508,7 +522,7 @@
             });
         }, false);
         })();
-        setTimeout(function(){$('.flash').remove();}, 5000);
+        
         
         $('.navbar-nav li').click(function(){
             alert();
@@ -528,24 +542,25 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto ">
+            <ul class="navbar-nav mr-auto " style="text-align: center;">
                 <li class="nav-item homeclass">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">Home </a>
                 </li>
                 <li class="nav-item jobclass">
                     <a class="nav-link" href="/internships">Jobs</a>
                 </li>
                 <li class="nav-item aboutclass knoww">
                     <a  class="nav-link" href="#">Know More</a>
-                </li>            
+                </li>    
+                <% if(!user) { %>
+                    <li class="ty1"><a class="btn btn-outline-info" href="/login">Login</a></li>
+                    <% } else{ %>
+                    <li class="ty2"><a class="prof nav-link" style="color: #10eaea;" href="/profile" ><%= user.username %> <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                    </a></li>
+                    <li class="ty3"><a class="nav-link btn btn-outline-info" href="/logout">LogOut</a></li>
+                <% } %>        
             </ul>
-            <% if(!user) { %>
-            <a class="nav-link" href="/login"><button type="button" class="btn btn-outline-info">Login</button></a>
-            <% } else{ %>
-            <a class="prof" href="/profile" style="margin-top: 14px;"><%= user.username %> <i class="fa fa-arrow-down" aria-hidden="true"></i>
-            </a>
-            <a class="nav-link" href="/logout"><button type="button" class="btn btn-outline-info">LogOut</button></a>
-            <% } %>
+            
         </div>
     </nav>
     <div class="container flash">

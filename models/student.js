@@ -8,8 +8,7 @@ var studentSchema = new mongoose.Schema({
         require: true,
     },
     googleid : { 
-        type :String,
-        require: true
+        type :String
     },
     email : { 
         type :String,

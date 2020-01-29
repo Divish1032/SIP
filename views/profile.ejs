@@ -17,7 +17,11 @@
     <p style="font-size: 16px; margin-top: 11px; color: red; text-decoration: underline;">Please enter the phone number!</p>
     <% } %> -->
     <h2>Profile</h2>
-    <img src="<%= user.profile%>" alt="">
+    <% if(user.profile){ %>
+        <img src="<%= user.profile%>" alt="">
+    <% }else{ %>
+        <img src="images/user.png" alt="">
+    <% } %>
     <div class="row">
         <div class="col-sm-4 col-12 tag">Name: </div>
         <div class="col-sm-8 col-12"><%= user.username %></div>

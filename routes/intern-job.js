@@ -87,8 +87,6 @@ router.post("/",middleware.checkInternshipOwnership, function(req, res) {
 // Get a particular internship
 router.get("/:id", middleware.isLoggedIn, function(req, res) {
     var applied = false;
-    delete req.session.returnTo
-    console.log(req.session.returnTo)
     Application.find({ company_id : req.params.id, student_email : req.user.email}, (error, appliedIntern) => {
         if(error)res.send(error);
         else{
@@ -110,7 +108,6 @@ router.get("/:id", middleware.isLoggedIn, function(req, res) {
 router.get("/:id/assessment-test", middleware.isLoggedIn, function(req, res){
     if(req.user.phone == null || req.user.branch == null || req.user.college == null || req.user.city == null || req.user.resume_link == null || req.user.phone == "" || req.user.branch == "" || req.user.college == "" || req.user.city == "" || req.user.resume_link == "" || req.user.year == "" ){
         req.flash("error","Fill your profile details before applying.");
-        req.session.returnTo = req.originalUrl;
         res.redirect("/profile");
     }
     else{
