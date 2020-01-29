@@ -1,5 +1,11 @@
 <% include ./partials/header2 %>
 <style>
+    .tag{
+        text-decoration: underline;
+        font-size: 20px;
+        margin-bottom: 8px;
+        color: #fa8231;
+    }
     @media screen and (max-width: 500px) {
       .profile .phone-number{
         width: 85%!important;
@@ -13,17 +19,17 @@
     <h2>Profile</h2>
     <img src="<%= user.profile%>" alt="">
     <div class="row">
-        <div class="col-sm-4 col-12">Name: </div>
+        <div class="col-sm-4 col-12 tag">Name: </div>
         <div class="col-sm-8 col-12"><%= user.username %></div>
     </div>
     <div class="row">
-        <div class="col-sm-4 col-12">Email Id: </div>
+        <div class="col-sm-4 col-12 tag">Email Id: </div>
         <div class="col-sm-8 col-12"><%= user.email %></div>
     </div>
     
     <form method="POST" action="/profile/<%= user._id %>?_method=PUT">
         <div class="row">
-            <div class="col-sm-4 col-12">Branch: </div>
+            <div class="col-sm-4 col-12 tag">Branch: </div>
             <% if(user.branch != null && user.branch != ""){ %>
             <div class="col-sm-8 col-12"><%= user.branch %></div>
             <% }else{ %>
@@ -33,7 +39,7 @@
             <% } %>
         </div>
         <div class="row">
-            <div class="col-sm-4 col-12">College: </div>
+            <div class="col-sm-4 col-12 tag">College: </div>
             <% if(user.college != null && user.college != ""){ %>
             <div class="col-sm-8 col-12"><%= user.college %></div>
             <% }else{ %>
@@ -43,25 +49,25 @@
             <% } %>
         </div>
         <div class="row">
-            <div class="col-sm-4 col-12">City: </div>
+            <div class="col-sm-4 col-12  tag">City: </div>
             <div class="col-sm-8 col-12">
                 <input type="text" class="form-control phone-number" name="user[city]" value="<%= user.city %>" >
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4 col-12">Phone: </div>
+            <div class="col-sm-4 col-12 tag">Phone: </div>
             <div class="col-sm-8 col-12">
                 <input type="text" class="form-control phone-number" name="user[phone]" value="<%= user.phone %>" >
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4 col-12">Year: </div>
+            <div class="col-sm-4 col-12 tag">Year: </div>
             <div class="col-sm-8 col-12">
                 <input type="text" class="form-control phone-number" name="user[year]" value="<%= user.year %>" >
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4 col-12">Resume Link(Google Drive): </div>
+            <div class="col-sm-4 col-12 tag">Resume Link(Google Drive): </div>
             <div class="col-sm-8 col-12">
                 <input type="text" class="form-control phone-number" name="user[resume_link]" value="<%= user.resume_link %>" >
             </div>
