@@ -41,7 +41,7 @@ router.get('/auth/google/callback',
     }),
     (req, res) => {
         req.flash("success","Successfully logged you in");
-        res.redirect('/internships');
+        res.redirect(req.session.returnTo || '/internships');
         delete req.session.returnTo;
         
     }
@@ -55,7 +55,9 @@ router.put("/profile/:id", middleware.isLoggedIn, function(req, res){
          }
          else{
             req.flash("success","Successfully updated your profile");
-             res.redirect("/profile");
+            res.redirect(req.session.returnTo || '/profile');
+            delete req.session.returnTo;
+            
          }
     }); 
  });
@@ -75,7 +77,7 @@ router.get('/logout', (req, res) => {
 
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
-      successRedirect: '/internships',
+      successRedirect: req.session.returnTo || '/internships',
       failureRedirect: '/login',
       failureFlash: true,
       successFlash: true

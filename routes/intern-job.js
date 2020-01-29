@@ -3,7 +3,7 @@ var router = express.Router();
 const User = require('../models/student')
 var Internship = require("../models/intern-job");
 var Application = require("../models/applied-interns");
-var middleware = require("../middleware"),
+var middleware = require("../middleware/index"),
     nodeMailer = require('nodemailer')
 var keys = require('../models/keys')
 
@@ -87,6 +87,8 @@ router.post("/",middleware.checkInternshipOwnership, function(req, res) {
 // Get a particular internship
 router.get("/:id", middleware.isLoggedIn, function(req, res) {
     var applied = false;
+    delete req.session.returnTo
+    console.log(req.session.returnTo)
     Application.find({ company_id : req.params.id, student_email : req.user.email}, (error, appliedIntern) => {
         if(error)res.send(error);
         else{
@@ -106,8 +108,9 @@ router.get("/:id", middleware.isLoggedIn, function(req, res) {
 
 // Get assessment test of an internship
 router.get("/:id/assessment-test", middleware.isLoggedIn, function(req, res){
-    if(req.user.phone == null || req.user.branch == null || req.user.college == null || req.user.city == null || req.user.resume_link == null || req.user.phone == "" || req.user.branch == "" || req.user.college == "" || req.user.city == "" || req.user.resume_link == ""){
+    if(req.user.phone == null || req.user.branch == null || req.user.college == null || req.user.city == null || req.user.resume_link == null || req.user.phone == "" || req.user.branch == "" || req.user.college == "" || req.user.city == "" || req.user.resume_link == "" || req.user.year == "" ){
         req.flash("error","Fill your profile details before applying.");
+        req.session.returnTo = req.originalUrl;
         res.redirect("/profile");
     }
     else{
@@ -116,7 +119,6 @@ router.get("/:id/assessment-test", middleware.isLoggedIn, function(req, res){
         Application.find({ company_id : req.params.id, student_email : req.user.email}, (error, appliedIntern) => {
             if(error)res.send(error);
             else{
-                
                 if(appliedIntern.length != 0){
                     applied = true;
                     job_applied_answers = appliedIntern[0].answer;

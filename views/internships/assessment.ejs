@@ -7,6 +7,8 @@
     }
   </style>
 <div class="container-fluid assessment">
+  <h4 style="text-align: center;margin-top: 25px;color: #fa8231;text-decoration: underline;font-size: 30px;"><%= internship.company_name %></h4>
+  <h5 style="text-align: center;font-size: 14px;margin-top: 15px;"><%= internship.company_profile %></h5>
     <h2>Assessment Questions</h2>
     <form  class="needs-validation " method="POST" action="/internships/<%= internship._id %>/job-apllication?_method=PUT" novalidate>
         <div class="form-group">
