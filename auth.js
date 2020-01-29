@@ -16,6 +16,7 @@ module.exports = (passport) => {
         });
         
     });  
+    
     passport.use(new GoogleStrategy({
             clientID: process.env.CLIENT_ID || keys.google.clientID ,
             clientSecret: process.env.CLIENT_SECRET || keys.google.clientSecret,
@@ -29,7 +30,7 @@ module.exports = (passport) => {
                 }
                 else{
                     new User ({
-                        username : profile,
+                        username : profile.name.givenName,
                         googleid : profile.id,
                         email : profile._json.email,
                         password : null,

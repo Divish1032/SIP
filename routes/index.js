@@ -14,9 +14,9 @@ router.get('/', (req, res) => {
 });
 
 // Google auth
-/* router.get('/auth/google', passport.authenticate('google', {
+router.get('/auth/google', passport.authenticate('google', {
     scope: ['profile', 'email']
-})); */
+}));
 
 // Abous Us page
 router.get('/about-us', (req, res) => {
@@ -34,7 +34,7 @@ router.get('/profile', middleware.isLoggedIn, (req,res) => {
 });
 
 // Google Call back
-/* router.get('/auth/google/callback',
+router.get('/auth/google/callback',
     passport.authenticate('google', {
         failureFlash: 'User has not yet registered on E-Summit 20 IIT BHU.',
         failureRedirect: '/'
@@ -45,7 +45,7 @@ router.get('/profile', middleware.isLoggedIn, (req,res) => {
         delete req.session.returnTo;
         
     }
-); */
+);
 
 // Edit Profile
 router.put("/profile/:id", middleware.isLoggedIn, function(req, res){
