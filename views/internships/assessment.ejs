@@ -1,5 +1,11 @@
 <% include ../partials/header2 %>
-
+<style>
+    @media screen and (max-width: 500px) {
+      .assessment{
+        width: 95%!important;
+      }
+    }
+  </style>
 <div class="container-fluid assessment">
     <h2>Assessment Questions</h2>
     <form  class="needs-validation " method="POST" action="/internships/<%= internship._id %>/job-apllication?_method=PUT" novalidate>
