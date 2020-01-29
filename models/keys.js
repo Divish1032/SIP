@@ -2,7 +2,7 @@ module.exports = {
     google: {
         clientID : '124430605126-7ulur1p71dkg0hf6ldn5macb58phpau5.apps.googleusercontent.com',
         clientSecret : 'opEEllaBpcP5neIXhpx0PzWp',
-        callbackURL : 'https://intern-connect.esummitiitbhu.com/auth/google/callback'
+        callbackURL : 'http://intern-connect.com:8000/auth/google/callback'
     },
     admin : {
         email : 'ecell@itbhu.ac.in',

@@ -36,6 +36,7 @@ router.get('/profile', middleware.isLoggedIn, (req,res) => {
 // Google Call back
 router.get('/auth/google/callback',
     passport.authenticate('google', {
+        failureFlash: 'User has not yet registered on E-Summit 20 IIT BHU.',
         failureRedirect: '/'
     }),
     (req, res) => {
