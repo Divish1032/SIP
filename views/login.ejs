@@ -4,10 +4,22 @@
 <div class="container login">
     <h2>Login</h2>    
       <p>Only students who have registered on E-Summit'20 IIT BHU can login through this protal.</p>
-      <div style="text-align: center;">
 
+      <div class="form-group" style="width: 50%;margin: 60px auto 25px;">
+        <form action="/login" method="post">
+          <label for="email">E-Summit'20 Email ID:</label>
+          <input class="form-control" id="email" type="email" name="email" placeholder="example@gmail.com">
+          <label for="password">Password:</label>
+          <input id="password" class="form-control" type="password" name="password", placeholder="password">
+          <button style="margin-top: 50px;padding: 10px 30px;" class="btn btn-light post-job-submit" type="submit">Login</button>
+        </form>
+      </div>
+      <hr style="width: 400px;height: 2px;">
+      <div style="text-align: center;">
+        <p style="font-weight: bold;">OR</p>
+        <p style="text-decoration: underline;"> Signin with Google (Only for Gmail ID's).</p>
           <a href="/auth/google">
-            <div class='g-sign-in-button'>
+            <div class='g-sign-in-button' style="margin: 15px;">
               <div class=content-wrapper>
               <div class='logo-wrapper'>  
                 <img src='https://developers.google.com/identity/images/g-logo.png'>
@@ -20,6 +32,8 @@
           </a>
 
       </div>
+
+      
       
 </div>
   

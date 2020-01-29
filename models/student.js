@@ -18,6 +18,7 @@ var studentSchema = new mongoose.Schema({
         unique:true,
         sparse:true 
     },
+    password : { type : String},
     branch : { type: String },
     college : { type: String },
     city : { type: String },
