@@ -446,7 +446,9 @@
             }
             .flash{
                 width: 90%!important;
+                margin: 20px 4%!important;
             }
+            
         }
 
         .profile .phone-number{
@@ -487,8 +489,9 @@
         }
         .flash{
             z-index: 1;
-            width: 50%;
-            margin: 20px auto;
+            width: 100%;
+            position: absolute;
+            margin: 20px 25%;
             padding: 0;
             width: 50%;
             opacity: 1;
@@ -523,7 +526,7 @@
         }, false);
         })();
         
-        
+       // setTimeout(function(){$('.flash').remove();}, 5000);
         $('.navbar-nav li').click(function(){
             alert();
             $('.active').removeClass('active');
