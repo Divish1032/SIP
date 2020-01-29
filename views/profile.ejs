@@ -1,5 +1,11 @@
 <% include ./partials/header2 %>
-
+<style>
+    @media screen and (max-width: 500px) {
+      .profile .phone-number{
+        width: 85%!important;
+      }
+    }
+  </style>
 <div class="container profile">
     <!-- <% if(user.phone == null){ %>
     <p style="font-size: 16px; margin-top: 11px; color: red; text-decoration: underline;">Please enter the phone number!</p>
