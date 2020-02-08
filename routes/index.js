@@ -7,6 +7,8 @@ const User = require('../models/student');
 var Internship = require("../models/intern-job");
 var Application = require("../models/applied-interns");
 var keys = require('../models/keys');
+var request=require('request');
+var bcrypt = require('bcryptjs');
 
 // Landing Page
 router.get('/', (req, res) => {
@@ -81,6 +83,7 @@ router.post('/login', (req, res, next) => {
       successFlash: "Successfully logged you in" */
     })(req, res, next);
 });
+
 
 
 

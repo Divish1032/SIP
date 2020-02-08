@@ -52,7 +52,7 @@ module.exports = (passport) => {
 
     passport.use(
         new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-          request.get('https://api.mlab.com/api/1/databases/esummit/collections/users?apiKey=bBu-CE3KYMZThp1b8Caik1nV4CAF3Nlx', function(err2, res2, body){
+          request.get('https://api.mlab.com/api/1/databases/esummit/collections/users?l=1500&apiKey=bBu-CE3KYMZThp1b8Caik1nV4CAF3Nlx', function(err2, res2, body){
             if(err2){
                 res.send(err2)
             }
