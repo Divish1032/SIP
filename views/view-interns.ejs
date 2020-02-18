@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Applied Interns</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h5 style="margin: 40px auto;text-align: center;color: #a6c60b;font-size: 35px;text-decoration: underline;"><%= company %></h5>
+        <p style="text-align: center;font-size: 19px;margin-bottom: 25px;">Applications for Internships</p>
+    </div>
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Company Profile</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">College</th>
+            <th scope="col">Branch</th>
+            <th scope="col">Resume</th>
+            <th scope="col">Why Apply?</th>
+            <th scope="col">Are you Available?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% var i = 1; interns.forEach(x=> { %>
+                <tr>
+                    <th scope="row"><%= i %></th>
+                    <td><%= x.company_profile %></td>
+                    <td><%= x.student_name %></td>
+                    <td><%= x.student_email %></td>
+                    <td><%= x.student_phone %></td>
+                    <td><%= x.student_college %></td>
+                    <td><%= x.student_branch %></td>
+                    <td><a target="_blank" href="<%= x.resume %>">Click Here</a></td>
+                    <td><%= x.answer[0] %></td>
+                    <td><%= x.answer[1] %></td>
+                </tr>
+            <% i++; }) %>
+        </tbody>
+    </table>
+    
+    
+</body>
+</html>

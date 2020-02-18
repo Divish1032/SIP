@@ -148,7 +148,7 @@ router.put("/:id/job-apllication", middleware.isLoggedIn, function(req, res) {
     var id= req.params.id;
     var answer = [req.body.ans1, req.body.ans2];
     Internship.findById(id).then((foundJob) => {
-        Application.create({company_id : id, answer : answer, company_name : foundJob.company_name, company_profile : foundJob.company_profile, student_name : req.user.name, student_email : req.user.email, student_phone : req.user.phone, student_college: req.user.college, student_branch : req.user.branch, resume : req.user.resume_link}, (err, result) => {
+        Application.create({company_id : id, answer : answer, company_name : foundJob.company_name, company_profile : foundJob.company_profile, student_name : req.user.username, student_email : req.user.email, student_phone : req.user.phone, student_college: req.user.college, student_branch : req.user.branch, resume : req.user.resume_link}, (err, result) => {
             if(err)res.send(err);
             else{
                 req.flash("success","Application apllied");
